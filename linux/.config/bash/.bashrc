@@ -75,7 +75,17 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls -la --color=auto'
+    alias vim="nvim"
+    alias ll='ls -la --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias diff='diff --color=auto'
+    alias ip='ip --color=auto'
+ 
+    eval "$(github-copilot-cli alias -- "$0")"
+
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -88,8 +98,6 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -la'
-alias grep='grep --color=auto'
 #alias la='ls -A'
 #alias l='ls -CF'
 
