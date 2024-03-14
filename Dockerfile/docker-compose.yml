@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  ubuntu:
+    container_name: ubuntu
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    volumes:
+      - type: bind
+        source: "/root/.ssh"
+        target: "/root/.ssh"
