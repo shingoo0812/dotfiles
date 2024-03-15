@@ -1,0 +1,2 @@
+$DOTFILES/linux/.config/tmux/tmux.conf=$HOME/.tmux.conf
+#$DOTFILES/linux/.config/tmux/plugins=$HOME/.tmux/plugins
