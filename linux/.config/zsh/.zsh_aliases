@@ -1,0 +1,11 @@
+# ALIASES ---------------------------------------------------------
+alias d=docker
+alias dc=docker-compose
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias v="nvim"
+alias vim="nvim"
+eval "$(github-copilot-cli alias -- "$0")"
+
+
