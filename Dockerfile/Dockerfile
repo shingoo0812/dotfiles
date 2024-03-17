@@ -28,5 +28,3 @@ RUN rm ~/.bashrc
 
 # Change Terminal to zsh
 RUN chsh root -s /bin/zsh
-RUN source /bin/zsh
-RUN exec zsh
