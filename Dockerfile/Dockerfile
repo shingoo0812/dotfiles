@@ -18,8 +18,7 @@ RUN wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.
 
 
 #Add my dotfiles
-RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git &&\
-/dotfiles/install/bootstrap.sh
+RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git 
 
 # Install powerlevel10k
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
