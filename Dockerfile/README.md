@@ -4,3 +4,5 @@ docker compose up -d
 docker compose run -it ubuntu /bin/bash
 3.docker compose build
 docker compose up --build
+4.Remove all containers
+docker container prune -f

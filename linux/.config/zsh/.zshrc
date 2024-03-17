@@ -250,14 +250,6 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
 
-# some more ls aliases
-#alias ll='ls -la'
-#alias la='ls -A'
-#alias l='ls -CF'
-#alias v="nvim"
-#alias vim="nvim"
-#eval "$(github-copilot-cli alias -- "$0")"
-
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -278,6 +270,9 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
 export PATH="$PATH:/opt/nvim/"
