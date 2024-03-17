@@ -4,8 +4,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# :TODO Create a function that source dir
-source "/dotfiles/linux/.config/zsh/.zsh_aliases"
+source "$DOTFILES/linux/.config/zsh/.zsh_aliases"
 
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
