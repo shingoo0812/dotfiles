@@ -1,5 +1,6 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/vpam/dotfiles
 - /home/vpam/dotfiles/linux/.config/nvim/lua/user
 - /home/vpam/.config/nvim/lua/user
 startuppopupversion: 5

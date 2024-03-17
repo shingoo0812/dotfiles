@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt update && \
 apt-get update && \
-apt install -y curl git jq git ripgrep tar unzip wget python3 python3-pip python3-venv tmux man gdb openssh-client nodejs
+apt install -y curl git jq git ripgrep tar unzip wget python3 python3-pip python3-venv tmux man gdb openssh-client nodejs zsh
 
 
 # Nvim install
@@ -25,3 +25,5 @@ RUN rm ~/.bashrc
 
 # Change Terminal to zsh
 RUN chsh root -s /bin/zsh
+
+RUN exec zsh

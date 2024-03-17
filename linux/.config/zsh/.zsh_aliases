@@ -2,6 +2,7 @@
 alias d="docker"
 alias dc="docker-compose"
 alias dkill="pgrep \"Docker\" | xargs kill -9"
+alias dcc="docker builder prune -f"
 
 alias v='nvim -w ~/.vimlog "$@"'
 alias vi='nvim '-w ~/.vimlog "$@"'
@@ -71,7 +72,8 @@ note() {
 dclear() {
 	docker ps -a -q | xargs docker kill -f
 	docker ps -a -q | xargs docker rm -f
-	docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
+	docker images -a -q | xargs docker image rm -f
+	#docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
 	docker volume prune -f
 }
 
