@@ -24,4 +24,4 @@ RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git
 RUN rm ~/.bashrc
 
 # Change Terminal to zsh
-RUN chsh -s /bin/zsh
+RUN chsh root -s /bin/zsh
