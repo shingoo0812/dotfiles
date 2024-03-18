@@ -4,6 +4,14 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+source_if_exists() {
+    if test -r "$1"; then
+        source "$1"
+    fi
+}
+
+
 source "$DOTFILES/linux/.config/zsh/.zsh_aliases"
 
 # ~/.zshrc file for zsh interactive shells.

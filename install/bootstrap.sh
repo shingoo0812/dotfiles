@@ -12,7 +12,6 @@ set -e
 
 echo ''
 echo "$DOTFILES"
-export DOTFILES=$DOTFILES
 
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
@@ -140,6 +139,7 @@ create_env_file() {
 
 install_dotfiles
 create_env_file
+chsh -s /bin/zsh
 
 echo ''
 success '  All installed!'
