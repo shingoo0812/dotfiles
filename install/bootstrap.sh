@@ -140,6 +140,7 @@ create_env_file() {
 install_dotfiles
 create_env_file
 chsh -s /bin/zsh
-
+exec zsh
+source ~/.zshrc
 echo ''
 success '  All installed!'
