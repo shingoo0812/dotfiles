@@ -14,7 +14,8 @@ source_if_exists() {
 }
 
 
-source "$DOTFILES/linux/.config/zsh/.zsh_aliases"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+source "$DOTFILES/linux/zsh/.zsh_aliases"
 
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
@@ -275,7 +276,6 @@ fi
 
 # Turn off all beeps
 unsetopt BEEP
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
