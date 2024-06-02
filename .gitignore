@@ -30,8 +30,7 @@ linux/unityhub/
 
 linux/dconf/user
 linux/gh/hosts.yml
-linux/simple-update-notifier/githubnext__github-copilot-cli.
-json
+linux/simple-update-notifier/githubnext__github-copilot-cli.json
 # Global gitignore
 # ----------------
 
