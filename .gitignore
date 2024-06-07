@@ -12,9 +12,31 @@ neoconf.json
 plugin
 queries
 spell
+<<<<<<< HEAD
 dotfiles/linux/dconf/user
 dotfiles/linux/gh/hosts.yml
 dotfiles/linux/simple-update-notifier/githubnext__github-copilot-cli.json
+=======
+
+linux/Code/
+linux/blender/
+linux/configstore/
+linux/dpscreenocr/
+linux/evolution/
+linux/goa-1.0/
+linux/godot/
+linux/google-chrome/
+linux/ibus-mozc-gnome-initial-setup-done
+linux/ibus/
+linux/mozc/
+linux/texturelab/
+linux/unity3d/
+linux/unityhub/
+
+linux/dconf/user
+linux/gh/hosts.yml
+linux/simple-update-notifier/githubnext__github-copilot-cli.json
+>>>>>>> 2d99e5c5b67b1543e6b7a8b3a942333384d77571
 # Global gitignore
 # ----------------
 
