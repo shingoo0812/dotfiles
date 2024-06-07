@@ -6,3 +6,4 @@ docker compose run -it ubuntu /bin/bash
 docker compose up --build
 4.Remove all containers
 docker container prune -f
+:q
