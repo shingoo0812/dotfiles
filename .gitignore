@@ -12,9 +12,9 @@ neoconf.json
 plugin
 queries
 spell
-dotfiles/linux/dconf/user
-dotfiles/linux/gh/hosts.yml
-dotfiles/linux/simple-update-notifier/githubnext__github-copilot-cli.json
+linux/dconf/user
+linux/gh/hosts.yml
+linux/simple-update-notifier/githubnext__github-copilot-cli.json
 
 linux/Code/
 linux/blender/
