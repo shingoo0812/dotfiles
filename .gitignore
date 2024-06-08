@@ -12,8 +12,8 @@ neoconf.json
 plugin
 queries
 spell
-linux/dconf/user
-linux/gh/hosts.yml
+linux/dconf/
+linux/gh/
 linux/simple-update-notifier/githubnext__github-copilot-cli.json
 
 linux/Code/
