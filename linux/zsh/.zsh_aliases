@@ -18,7 +18,10 @@ alias c='clear'
 alias s='source ~/.zshrc'
 alias trim="awk '{\$1=\$1;print}'"
 
-# GIT ALIASES -----------------------------------------------------
+# APT -----------------------------------------------------
+alias ap='sudo apt -y update && sudo apt -y upgrade' 
+
+# GIT alias ALIASES -----------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
