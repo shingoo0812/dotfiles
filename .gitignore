@@ -12,25 +12,11 @@ neoconf.json
 plugin
 queries
 spell
-linux/dconf/
-linux/gh/
-linux/simple-update-notifier/githubnext__github-copilot-cli.json
-
-linux/Code/
-linux/blender/
-linux/configstore/
-linux/dpscreenocr/
-linux/evolution/
-linux/goa-1.0/
-linux/godot/
-linux/google-chrome/
-linux/ibus-mozc-gnome-initial-setup-done
-linux/ibus/
-linux/mozc/
-linux/texturelab/
-linux/unity3d/
-linux/unityhub/
-
+linux/*
+!linux/nvim/
+!/linux/tmux/
+!/linux/zsh/
+!/linux/bash/
 # Global gitignore
 # ----------------
 

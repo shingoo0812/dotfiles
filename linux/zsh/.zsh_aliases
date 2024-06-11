@@ -21,6 +21,9 @@ alias trim="awk '{\$1=\$1;print}'"
 # APT -----------------------------------------------------
 alias ap='sudo apt -y update && sudo apt -y upgrade' 
 
+# pbcopy for tmux -----------------------------------------------------
+alias pbcopy='xsel --clipboard --input'
+
 # GIT alias ALIASES -----------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'
