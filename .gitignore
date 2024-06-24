@@ -5,6 +5,7 @@ coc-settings.json
 host.json
 colors
 docs
+lazy-lock.json
 ftplugin
 ginit.vim
 #lua/user
