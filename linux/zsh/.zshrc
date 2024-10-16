@@ -284,4 +284,4 @@ unsetopt BEEP
 eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
-export PATH="$PATH:/opt/nvim/"
+export PATH="$PATH:/opt/nvim-linux64/bin"
