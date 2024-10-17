@@ -14,7 +14,6 @@ plugin
 queries
 spell
 linux/*
-!linux/nvim/
 !/linux/tmux/
 !/linux/zsh/
 !/linux/bash/
