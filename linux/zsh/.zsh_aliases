@@ -27,7 +27,7 @@ alias pbcopy='xsel --clipboard --input'
 # GIT alias ALIASES -----------------------------------------------------
 alias gc='git commit'
 
-alias gits='git status'
+alias gts='git status'
 alias gco='git checkout'
 alias ga='git add'
 alias gba='git branch --all'
