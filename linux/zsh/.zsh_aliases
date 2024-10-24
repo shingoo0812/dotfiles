@@ -26,6 +26,8 @@ alias pbcopy='xsel --clipboard --input'
 
 # GIT alias ALIASES -----------------------------------------------------
 alias gc='git commit'
+
+alias gs='git status'
 alias gco='git checkout'
 alias ga='git add'
 alias gba='git branch --all'
@@ -89,6 +91,43 @@ dclear() {
 	docker volume prune -f
 }
 
+renamef() {
+  local target_string=$1    
+  local replacement=$2     
+  for file in *; do
+    new_file=$(echo "$file" | sed -E "s/$target_string/$replacement/")
+    
+    if [[ "$new_file" != "$file" ]]; then
+      mv "$file" "$new_file"
+      echo "Renamed: $file -> $new_file"
+    fi
+  done
+}
+
+adds() {
+  local position=$1        # specify to prefix or suffix 
+  local regex=$2           # specify to regex word to translating files 
+  local add_string=$3      # specify to add string
+
+  for file in *; do
+    if [[ "$file" =~ $regex ]]; then
+      if [[ "$position" == "-p" ]]; then
+        new_file="$add_string$file"  # Add prefix
+      elif [[ "$position" == "-s" ]]; then
+          new_file="${file%.*}$add_string.${file##*.}"  # Add suffix(preserve extension) 
+      else
+        echo "Error: First argument must be '-p:prefix' or '-s:suffix'."
+        return 1
+      fi
+      
+      # Execute only if file name is changed
+      if [[ "$new_file" != "$file" ]]; then
+        mv "$file" "$new_file"
+        echo "Renamed: $file -> $new_file"
+      fi
+    fi
+  done
+}
 alias docker-clear=dclear
 
 
