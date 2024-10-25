@@ -285,3 +285,21 @@ eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="/home/vpam/miniconda3/bin:/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/vpam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/vpam/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/vpam/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/vpam/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+eval "$(direnv hook zsh)"
