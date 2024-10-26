@@ -70,6 +70,8 @@ alias cdv='cd ~/dotfiles/linux/nvim'
 alias cdd='cd ~/dotfiles'
 alias ..="cd .."
 alias ...="cd .. & cd .."
+alias desk='cd /mnt/c/Users/shing/Desktop/'
+alias cdz='cd ~/dotfiles/linux/zsh/'
 
 # FUNCTIONS ------------------------------------------------------------------
 function take() {
