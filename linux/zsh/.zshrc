@@ -280,13 +280,16 @@ unsetopt BEEP
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+autoload -Uz compinit && compinit -u   # Load and initialize Zsh completion system without security checks
+zstyle ':completion:*' rehash true     # Automatically rehash to refresh completion for newly installed commands
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # Load fzf (fuzzy finder) for enhanced completion if fzf is installed
 eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="/home/vpam/miniconda3/bin:/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:$PATH"
 export PATH="/usr/local/bin/netcoredbg/:$PATH"
+export PATH="$PATH:$HOME/.dotnet/tools:$PATH"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/vpam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
