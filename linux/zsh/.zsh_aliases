@@ -140,6 +140,10 @@ manv() {
   man "$1" | col -b | nvim -
 }
 
+cf() {
+  find "$1" -type f -exec dirname {} \; | awk -F/ '{print $(NF)}' | sort | uniq -c | sort -rn | head -n 10
+}
+
 alias docker-clear=dclear
 
 

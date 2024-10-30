@@ -1,3 +1,4 @@
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 export DOTFILES=$HOME/dotfiles
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -233,7 +234,8 @@ precmd() {
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    eval "$(dircolors -b)"
     export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
     alias ls='ls --color=auto'
@@ -287,12 +289,9 @@ eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
 export PATH="$PATH:/opt/nvim-linux64/bin"
-export PATH="/home/vpam/miniconda3/bin:/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:$PATH"
-export PATH="/usr/local/bin/netcoredbg/:$PATH"
-export PATH="$PATH:$HOME/.dotnet/tools:$PATH"
-export PATH="$PATH:/usr/share/dotnet:$PATH"
+export PATH="$PATH:/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin::/sbin:$PATH"
+# export PATH="/usr/local/bin/netcoredbg/:$PATH"
 export PATH="$PATH:~/.cache/omnisharp-vim/omnisharp-roslyn/:$PATH"
-export DOTNET_ROOT=/usr/share/dotnet
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/vpam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
