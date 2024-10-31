@@ -144,6 +144,35 @@ cf() {
   find "$1" -type f -exec dirname {} \; | awk -F/ '{print $(NF)}' | sort | uniq -c | sort -rn | head -n 10
 }
 
+
+rpt(){
+  local search_pattern="$1"  # Argument 1: Search pattern
+  local replace_pattern="$2" # Argument 2: Replacement pattern
+
+  # Search and replace all files recursively from the current directory
+  # If don`t need buck up, delete .bak
+  find . -type f -exec sed -i.bak "s/${search_pattern}/${replace_pattern}/g" {} +
+
+  echo \"Replacement completed: ${search pattern} converted to ${replace pattern}.\"
+}
+
+
+# Script to generate test data
+create_test_data() {
+  local num_files="$1"   
+  local base_content="$2" 
+  local search_word="$3"  
+  
+  mkdir -p test_data    # Create a directory for test data
+
+  for i in $(seq 1 "$num_files"); do
+    echo -e "${base_content}\nThis file contains the word: ${search_word}." > "test_data/file_${i}.txt"
+  done
+
+  echo "Test data created: ${num_files} files created in test data/."
+}
+
+
 alias docker-clear=dclear
 
 

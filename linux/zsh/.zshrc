@@ -288,10 +288,11 @@ zstyle ':completion:*' rehash true     # Automatically rehash to refresh complet
 eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export PATH="$PATH:/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin::/sbin:$PATH"
+export PATH="/opt/nvim-linux64/bin:$PATH"
+export PATH="/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:$PATH"
 # export PATH="/usr/local/bin/netcoredbg/:$PATH"
-export PATH="$PATH:~/.cache/omnisharp-vim/omnisharp-roslyn/:$PATH"
+export PATH="~/.cache/omnisharp-vim/omnisharp-roslyn/:$PATH"
+export PATH="~/.cargo/bin:$PATH"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/vpam/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
