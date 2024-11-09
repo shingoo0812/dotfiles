@@ -287,7 +287,6 @@ zstyle ':completion:*' rehash true     # Automatically rehash to refresh complet
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # Load fzf (fuzzy finder) for enhanced completion if fzf is installed
 eval "$(github-copilot-cli alias -- "$0")"
 
-export SHELL=/bin/bash
 # Add nvim path
 export PATH="/opt/nvim-linux64/bin:$PATH"
 export PATH="/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:$PATH"

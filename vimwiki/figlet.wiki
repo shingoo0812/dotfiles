@@ -1,0 +1,2 @@
+figlet 'NeoVim' -f 'Big Money-se' -d ./figlet-fonts
+-dはディレクトリ
