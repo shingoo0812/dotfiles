@@ -1,6 +1,6 @@
 [submodule "nvim"]
 	path = linux/nvim
-	url = https://github.com/shingoo0812/Astronvim
+	url = https://github.com/shingoo0812/kickstart.nvim.git
 [submodule "linux/tmux/plugins/tpm"]
 	path = linux/tmux/plugins/tpm
 	url = https://github.com/shingoo0812/tpm.git
