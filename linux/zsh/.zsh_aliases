@@ -17,6 +17,7 @@ alias l='ls -CF'
 alias c='clear'
 alias s='source ~/.zshrc'
 alias trim="awk '{\$1=\$1;print}'"
+alias bat='batcat'
 
 # APT -----------------------------------------------------
 alias ap='sudo apt -y update && sudo apt -y upgrade' 
