@@ -1,4 +1,0 @@
-=1.Better Parser=
-    * Llama Parse - implemented by Llama index. Converting PDF to LLM
-    * pypdf - common PDF passer
-    * fire craw
