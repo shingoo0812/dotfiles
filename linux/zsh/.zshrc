@@ -313,15 +313,15 @@ eval "$(direnv hook zsh)"
 # -- FZF -------
 
 
-if [ -f ~/fzf-git.sh/fzf-git.sh ]; then
-  echo "Found fzf-git.sh, pls sourcing it"
-  # source ~/fzf-git.sh/fzf-git.sh
-else
-  echo "fzf-git.sh not found"
-fi
-
-# Set up fzf keybindings and fuzzy completion
-eval "$(fzf --zsh)"
+# if [ -f ~/fzf-git.sh/fzf-git.sh ]; then
+#   echo "Found fzf-git.sh, pls sourcing it"
+#   # source ~/fzf-git.sh/fzf-git.sh
+# else
+#   echo "fzf-git.sh not found"
+# fi
+#
+# # Set up fzf keybindings and fuzzy completion
+# eval "$(fzf --zsh)"
 
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
