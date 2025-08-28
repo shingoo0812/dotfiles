@@ -343,3 +343,10 @@ _fzf_compgen_dir() {
 # ----- Bat (better cat) -----
 
 export BAT_THEME=tokyonight_night
+
+
+# Automatically retrieve windows ip and create an alias
+win_curl() {
+    local windows_ip=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+    curl "http://$windows_ip$1" "${@:2}"
+}
