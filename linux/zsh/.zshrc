@@ -239,8 +239,6 @@ if [ -x /usr/bin/dircolors ]; then
     export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -289,7 +287,7 @@ eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
 export PATH="/opt/nvim-linux64/bin:$PATH"
-export PATH="/home/vpam/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:$PATH"
 # export PATH="/usr/local/bin/netcoredbg/:$PATH"
 export PATH="~/.cache/omnisharp-vim/omnisharp-roslyn/:$PATH"
 export PATH="~/.cargo/bin:$PATH"
@@ -323,6 +321,7 @@ eval "$(direnv hook zsh)"
 # # Set up fzf keybindings and fuzzy completion
 # eval "$(fzf --zsh)"
 
+
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -350,3 +349,15 @@ win_curl() {
     local windows_ip=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
     curl "http://$windows_ip$1" "${@:2}"
 }
+#
+# . "$HOME/.local/bin/env"
+# eval "$(uv generate-shell-completion bash)"
+# # CUDA Env
+# export CUDA_HOME=/usr/local/cuda
+# export PATH=$CUDA_HOME/bin:$PATH
+# export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+#
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

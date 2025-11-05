@@ -175,6 +175,13 @@ create_test_data() {
   echo "Test data created: ${num_files} files created in test data/."
 }
 
+fb() {
+  # fzf でファイル選択 + bat プレビュー
+  local file=$(fzf --preview "bat --style=numbers --color=always {}")
+  
+  # ファイルが選択されたら Vim で開く
+  [[ -n "$file" ]] && nvim "$file"
+}
 
 alias docker-clear=dclear
 
