@@ -286,7 +286,7 @@ zstyle ':completion:*' rehash true     # Automatically rehash to refresh complet
 eval "$(github-copilot-cli alias -- "$0")"
 
 # Add nvim path
-export PATH="/opt/nvim-linux64/bin:$PATH"
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:$PATH"
 # export PATH="/usr/local/bin/netcoredbg/:$PATH"
 export PATH="~/.cache/omnisharp-vim/omnisharp-roslyn/:$PATH"
