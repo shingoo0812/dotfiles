@@ -14,6 +14,8 @@ plugin
 queries
 spell
 linux/*
+linux/github-copilot/versions.json
+linux/lazygit/state.yml
 !/linux/tmux/
 !/linux/zsh/
 !/linux/bash/
