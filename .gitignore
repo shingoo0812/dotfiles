@@ -19,6 +19,8 @@ linux/lazygit/state.yml
 !/linux/tmux/
 !/linux/zsh/
 !/linux/bash/
+windows/PowerShell/Modules
+
 # Global gitignore
 # ----------------
 
@@ -35,6 +37,8 @@ Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
+*backup*
+*bk*
 # (Neo)Vim
 *~
 .netrwhist

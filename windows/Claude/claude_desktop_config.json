@@ -1,0 +1,118 @@
+{
+  "mcpServers": {
+    "neovim": {
+      "command": "node",
+      "args": [
+        "C:/Users/shing/AppData/Roaming/npm/node_modules/mcp-neovim-server/build/index.js"
+      ],
+      "env": {
+        "NVIM_SOCKET_PATH": "\\\\.\\pipe\\nvim"
+      }
+    },
+    "houdini": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "C:/Users/shing/OneDrive/Documents/houdini21.0/scripts/python/houdinimcp/houdini_mcp_server.py"
+      ]
+    },
+    "godot": {
+      "command": "npx",
+      "args": [
+        "@coding-solo/godot-mcp"
+      ],
+      "env": {
+        "GODOT_PATH": "F:\\Work\\Godot\\Godot_v4.6.1-stable_win64.exe",
+        "DEBUG": "true"
+      }
+    },
+    "GLSLTestEnv Docs": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://gitmcp.io/shingoo0812/GLSLTestEnv"
+      ]
+    },
+    "browser-control-mcp": {
+      "command": "node",
+      "args": [
+        "C:/Users/shing/OneDrive/Documents/MCP/browser-control-mcp/mcp-server/dist/server.js"
+      ],
+      "env": {
+        "EXTENSION_SECRET": "89caff10-2a23-4257-beec-b58d59a8057d",
+        "EXTENSION_PORT": "8089"
+      }
+    },
+    "blender": {
+      "command": "uvx",
+      "args": [
+        "blender-mcp"
+      ]
+    },
+    "maya": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "C:/Users/shing/OneDrive/Documents/MCP/MayaMCP",
+        "run",
+        "maya_mcp_server.py"
+      ]
+    },
+    "powershell": {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:/Users/shing/OneDrive/Documents/MCP/powershell-mcp/src/server.js"
+      ],
+      "env": {
+        "PSModulePath": "C:\\Users\\shing\\OneDrive\\Documents\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\7\\Modules",
+        "APPDATA": "C:\\Users\\shing\\AppData\\Roaming",
+        "USERPROFILE": "C:\\Users\\shing",
+        "PATH": "C:\\Program Files\\PowerShell\\7;C:\\Program Files\\nodejs;C:\\Windows\\System32;C:\\Windows",
+        "POWERSHELL_TELEMETRY_OPTOUT": "1"
+      },
+      "timeout": 180000
+    },
+    "filesystem": {
+      "command": "wsl.exe",
+      "args": [
+        "bash",
+        "-c",
+        "npx -y @modelcontextprotocol/server-filesystem ~"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "wsl.exe",
+      "args": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "comfyui-mcp-server": {
+      "args": [
+        "mcp-remote",
+        "http://127.0.0.1:9000/mcp"
+      ],
+      "optional": true,
+      "command": "npx",
+      "env": {
+        "COMFY_MCP_WORKFLOW_DIR": "D:\\ComfyUI\\ComfyUI-Easy-Install\\ComfyUI\\user\\default\\workflows"
+      }
+    },
+    "superpowers": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "superpowers-mcp"
+      ]
+    }
+  },
+  "preferences": {
+    "coworkScheduledTasksEnabled": true,
+    "ccdScheduledTasksEnabled": true,
+    "sidebarMode": "chat",
+    "coworkWebSearchEnabled": true,
+    "floatingAtollActive": true
+  }
+}
