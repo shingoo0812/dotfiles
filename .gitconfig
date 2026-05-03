@@ -1,0 +1,47 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = shingoo0812
+	email = shingoo0812@gmail.com
+[core]
+	editor = \"C:\\Users\\shing\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+	pager = delta
+[safe]
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/which-key.nvim
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/telescope.nvim
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/nvim-cmp
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/LuaSnip
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/gitsigns.nvim
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/cmp-nvim-lsp
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/cmp-path
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/cmp_luasnip
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/mason-nvim-dap.nvim
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/nvim-dap
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/nvim-dap-ui
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/nvim-nio
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/telescope-fzf-native.nvim
+	directory = C:/Users/shing/AppData/Local/nvim-data/lazy/todo-comments.nvim
+[credential "https://huggingface.co"]
+	provider = generic
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+    line-numbers = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+    difftool = true
