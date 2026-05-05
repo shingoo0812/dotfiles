@@ -8,7 +8,7 @@ apt install -y curl git jq git ripgrep tar unzip wget python3 python3-pip python
 
 
 # Nvim install
-RUN wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && \
+RUN wget https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux64.tar.gz && \
     tar -zxvf nvim-linux64.tar.gz && \
     mv nvim-linux64/bin/nvim usr/bin/nvim && \
     mv nvim-linux64/lib/nvim usr/lib/nvim && \
