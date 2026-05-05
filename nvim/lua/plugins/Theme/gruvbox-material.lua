@@ -1,0 +1,1 @@
+-- gruvbox-material: colorscheme loaded in everforest.lua via vim.cmd.colorscheme

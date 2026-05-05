@@ -1,0 +1,17 @@
+= 1.Setting to Inspector =
+If you use Node that have Collision Shape.They are StaticBody, KinematicBody2D, RigidBody2D so on.
+You can setting to Collision Layer directly in Inspector.
+
+= 2.Setting in a Script =
+You can also set the collison layer using a script:
+```$YourCollisionNode.collision_layer = 0b10 # Setting to the second layer```
+
+= 3.Setting to Flag in Code =
+You can add collision that use the specified flags.
+```@export_flags_2d_physics var collision_layer : int = 0b10000```
+
+= 4.Setting to Collision Layer Name in Project Settings =
+You can assign names to collision layers in the Project Settings under Layer Names -> 2D Physics or 3D Physics.
+This makes it easier to manage and identify layers.
+
+= 5.CustomCollision =

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:neovim.io)",
+      "WebFetch(domain:echasnovski.com)",
+      "WebFetch(domain:briandouglas.ie)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:jdhao.github.io)",
+      "WebFetch(domain:bower.sh)",
+      "WebFetch(domain:fredrikaverpil.github.io)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(cmd /c \"dir /ad /b \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\"\" 2>&1 | head -20\")",
+      "PowerShell(cmd /c \"dir /ad /b \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\"\" 2>&1\" | Select-Object -First 30)",
+      "PowerShell(cmd /c \"dir /ad /b \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\"\" 2>&1\" | Where-Object { $_ -match 'strudel|fzf.native|LuaSnip|telescope' })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\\\\telescope-fzf-native.nvim\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName, LastWriteTime | Sort-Object LastWriteTime -Descending | Select-Object -First 15)",
+      "PowerShell(cmd /c \"dir /s /b \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\\\\telescope-fzf-native.nvim\"\" 2>&1\" | Select-Object -First 30)",
+      "PowerShell(Get-Item \"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\\\\telescope-fzf-native.nvim\\\\build\\\\libfzf.dll\" | Select-Object Name, @{N='Size\\(KB\\)';E={[math]::Round\\($_.Length/1KB,1\\)}}, LastWriteTime)",
+      "PowerShell(cmd /c \"dir \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\lazy\\\\telescope-fzf-native.nvim\\\\build\\\\\"\"\")",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim\\\\lua\\\\plugins\\\\AI\\\\claudecode.lua\" | Select-Object -First 5 | ForEach-Object { Write-Output \"[$_]\" })",
+      "PowerShell(cmd /c \"dir /s /b /a-d \"\"C:\\\\Users\\\\shing\\\\AppData\\\\Local\\\\nvim-data\\\\site\\\\pack\\\\core\\\\opt\\\\claudecode.nvim\"\" 2>&1\" | Where-Object { $_ -match '\\\\.lua$' })",
+      "PowerShell(cmd /c \"dir /s /b /a-d \"\"$env:TEMP\\\\nvim\"\" 2>&1\" | Select-Object -First 20)"
+    ]
+  }
+}

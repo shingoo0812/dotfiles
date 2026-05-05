@@ -1,0 +1,103 @@
+= Purpose =                             [[./indexx.wiki]]
+This is a first rougue like project.
+
+= Index =
+    Player Input System
+
+
+
+= Class Configuration =
+* Player class
+    (extends Entity) 
+    <property>
+        * grid_size := Vector2(16,16)
+        * has_moved := false
+    <method>
+        * `_`ready() -> void
+            This method is executed once at run time. 
+            Set the player position and grid size.
+            Call the add_entity()
+ 
+        * `_`process(delta: float) -> void
+        
+        * `_`physics`_`process -> void 
+            This method indicates that it received input and manage Action move.
+            If ActionType is MOVE, call grid_world.player_input(self, action)
+            
+
+* GridWorld class
+    (extends Node2D)
+    <property>
+        * entities: Dictionary
+            Indexed by vector position. Default is {}
+    <method>
+        * get_entity(pos: Vector2i)
+            Return entities
+        * add_entity(e: Entity)
+            Add entities by the entity grid position
+        * player_input(player: Player, action: EntityAction)
+            Call `_`perform_action(player, action)
+            Call `_`process_entities()
+        
+        * `_`process`_entities`()
+        
+        * `_`perform_action(entity: Entity, action: EntityAction)
+            If ActionType is MOVE, call `_`move_entity(entity, action.direction)
+        
+        * `_`move_entity(entity: Entity, direction : Vector2i)
+            Move
+
+* Entity class
+    (extends Node2D)
+    <property>
+        * @onready grid_world : GridWorld
+        * cell_size : Vector2 
+        * grid_position: Vector2i
+            
+    <method>
+        * `_`ready
+            Initialize the player or enemy position 
+            call add_entity > GridWorld
+        * `_`do_process() -> EntityAction
+            Return EntityAction
+        
+        * `_`update_render_position() -> void
+             Update position
+
+* ActionType class
+    enum
+        WAIT, MOVE
+
+* Direction class
+    enum
+
+* EntityAction class
+    <property>
+        * type : int ActionType.WAIT
+        * direction := Vector2i(0, 1)
+    <method>
+        * `_`init
+            Constructor. Initialize type amd direction.
+        
+        * `_`to_string -> String
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+1. Change Background color
+First of all, change the background-color of your project to the color you want use.
+Start Godot and see the menu at the top.
+Click Project, and select Project Settings from the menu that pops up.
+A new menu will then pop up. Search for color in the search bar, select Environment from the menu, and then set the color with Default Clear Color.
+Setting value is #111114.
+
+Once the setting is complete, exit the menu.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create the player node.
+add Node2D>Sprite2D named Player
+Set >texture
+
+Region > Enable >On
+
+Project>Settings>search texture filter>Default Texture Filter set to Nearest
+
+In the Inspector, Edit Region>Snap Mode to Grid Snap>Set to character

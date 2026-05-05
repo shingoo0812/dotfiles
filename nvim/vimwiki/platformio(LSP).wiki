@@ -1,0 +1,81 @@
+
+If you need more information, please you see the following page: https://www.reddit.com/r/neovim/comments/13vy9y5/neovim_and_platformio_tutorial/
+
+
+here is a tutorial on how to get nvim to work with platformio with lsp
+
+here is what you need to know before you start:
+platfromio is a tool used to program arduinos and other microcontrolers
+
+vscode uses platformio ide which we are not going to use we are going to use platformio cli instead
+
+you also need to know how to use lazy.nvim or a packagemanger and how to require('files') in you init.lua and how the floder structure works
+
+how to use pio (platformio) commands in the terminal
+
+with that out of the way lets start!
+
+
+step one : here are the institutions for installing platformio cli for your os : https://docs.platformio.org/en/stable/core/index.html
+
+step two : setup neovim lsp and setup clangd
+
+i use lazy.nvim as my package manger and mason to install lsps you can use packer or any other package manger
+
+these are the plugins youre going to need to add and install
+
+============================================================================================================================
+'williamboman/mason.nvim',
+build = ':MasonUpdate' },
+'williamboman/mason-lspconfig.nvim',
+'neovim/nvim-lspconfig',
+'hrsh7th/nvim-cmp',
+'hrsh7th/cmp-nvim-lsp',
+'L3MON4D3/LuaSnip',
+============================================================================================================================
+
+and in a lsp.lua or the root init.lua here is the setup
+
+
+============================================================================================================================
+
+require('lspconfig').clangd.setup {
+  on_attach = function()
+    print 'clangd attached to the buffer'
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
+  end,
+},
+============================================================================================================================
+
+so now you can check that clangd is installed by :Mason
+
+so in you pio project you need to do 3 things :
+
+add 'extra_scripts = pre:extra_scripts.py' to your platformio.ini
+
+example:
+============================================================================================================================
+[env:esp32doit-devkit-v1]
+platform = espressif32
+board = esp32doit-devkit-v1
+framework = arduino
+extra_scripts = pre:extra_scripts.py
+============================================================================================================================
+
+next make a file called 'extra-scripts.py' and paste this into it:
+
+
+============================================================================================================================
+import os
+Import("env")
+
+# include toolchain paths
+env.Replace(COMPILATIONDB_INCLUDE_TOOLCHAIN=True)
+
+# override compilation DB path
+env.Replace(COMPILATIONDB_PATH="compile_commands.json")
+============================================================================================================================
+
+now run pio run -t compiledb which will make commpiled_commands.json in the root and this is what clangd will use for your lsp
+
+so now add your #include statements and rerun pio run -t compiledb and you should get auto compleation in neovim

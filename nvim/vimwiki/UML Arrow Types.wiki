@@ -1,0 +1,194 @@
+
+UML の**矢印（→ ◁▷ ─▶ など）には明確に「コード上の意味（パターン）」が対応**しています。
+つまり **UML の矢印は “コードの関係を表現した符号”** です。
+
+ここでは **クラス図（Class Diagram）の矢印**に絞って、
+**「その矢印はコード上でどういう関係のときに使うのか」** を完全に整理します。
+
+---
+
+# 🎯 **UML の矢印 → コードのパターン対応表（最重要）**
+
+## ① **依存（Dependency）– 呼び出し / 使用**
+
+```
+A - - - - > B
+```
+
+### ✔ コード上はこういうときに使う
+
+* A のメソッドの中で B を一時的に使う
+* B を引数として受け取る
+* B のメソッドを呼び出す
+* B をローカル変数として生成する
+
+### ✨ 例（Python）
+
+```python
+class B:
+    def do(self): pass
+
+class A:
+    def run(self):
+        b = B()      # ← 依存
+        b.do()
+```
+
+### ➜ UML
+
+```
+A - - - - > B
+```
+
+---
+
+## ② **関連（Association）– 参照 / 所持（長期間保持）**
+
+```
+A --------> B
+```
+
+### ✔ コード上はこういうときに使う
+
+* A が **B のインスタンスをメンバとして保持**している
+* A のライフサイクル中ずっと B を使う
+* コンポジションほど強くない「 has-a 」
+
+### ✨ 例
+
+```python
+class B:
+    pass
+
+class A:
+    def __init__(self):
+        self.b = B()   # ← 参照を保持
+```
+
+### ➜ UML
+
+```
+A --------> B
+```
+
+---
+
+## ③ **集約（Aggregation）– “B を持っているが寿命は別”**
+
+```
+A o------> B
+```
+
+（白いダイヤ）
+
+### ✔ コード上はこういうとき
+
+* A は B を保持するが、寿命は別
+* 例えば A は複数の B をリストでもつが、B 自体は独立して存在できる
+
+### ✨ 例
+
+```python
+class Student: pass
+
+class Classroom:
+    def __init__(self, students):
+        self.students = students   # 受け取って保持
+```
+
+→ students は外で生成されて渡される（寿命が独立）
+
+---
+
+## ④ **コンポジション（Composition）– 強い所有：寿命が同じ**
+
+```
+A ◆------> B
+```
+
+（黒いダイヤ）
+
+### ✔ コード上
+
+* A が B を**内部で生成**し、
+* **A が消えれば B も消える**関係
+
+### ✨ 例
+
+```python
+class Engine:
+    pass
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()   # ここで生成 → Car が消えれば Engine も消える
+```
+
+---
+
+## ⑤ **継承（Generalization / Inheritance）**
+
+```
+Child ----▷ Parent
+```
+
+（三角矢印・白ぬき）
+
+### ✔ コード上はまさに “継承”
+
+```python
+class Parent: pass
+
+class Child(Parent):
+    pass
+```
+
+---
+
+## ⑥ **実装（Realization / Interface）**
+
+```
+Class - - -▷ Interface
+```
+
+（三角矢印 + 破線）
+
+### ✔ コード上
+
+* Python → ABC（抽象クラス）を実装したとき
+* Java → interface の実装
+
+```python
+from abc import ABC, abstractmethod
+
+class I(ABC):
+    @abstractmethod
+    def do(self): pass
+
+class A(I):
+    def do(self):
+        pass
+```
+
+---
+
+# 🎯 UML の矢印とコードパターンの対応まとめ（最重要表）
+
+| UML 記号                  | 意味                  | どんなコードのとき？                   |
+| ----------------------- | ------------------- | ---------------------------- |
+| `A - - -> B`            | **依存（Dependency）**  | メソッド内で B を使う・一時的利用           |
+| `A ----> B`             | **関連（Association）** | B をメンバとして保持（寿命は別でもOK）        |
+| `A o--> B`              | **集約（Aggregation）** | B を外部から渡されて保持（寿命は独立）         |
+| `A ◆--> B`              | **コンポジション**         | A が内部で B を生成し一生保持            |
+| `Child --▷ Parent`      | **継承**              | 子が親クラスを継承                    |
+| `Class - - ▷ Interface` | **実装**              | Interface/Abstract class の実装 |
+
+---
+
+# 必要なら…
+
+### ✨ あなたが今書いているコードを見せてくれれば
+
+**そのコードに対応する UML の矢印を全部選んで図にして描きます（venn 用 ASCII 対応）**
+
+いつでも送ってください。

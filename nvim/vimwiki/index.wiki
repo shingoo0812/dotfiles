@@ -1,0 +1,20 @@
+# VIMWIKI [[INDEX|INDEX]]
+- My knowledge base
+    * [[Git]] 
+    * [[UML]]
+    * [[Scratchpad]] -- various temporary stuff.
+- Programming
+    * [[CPP]]
+    * [[Shell Script|Shell Script]]
+    * [[Python]]
+- Env
+    * [[NEOVIM]]
+    * [[Linux]]
+    * [[Llama]]
+- Game Engine
+    * [[GameDesingDocument]]
+    * [[Godot|Godot]]
+    * [[Unity]]
+- 3D Printer
+    * [[Material]]
+    * [[Joits|Joits]]

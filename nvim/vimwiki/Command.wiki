@@ -1,0 +1,8 @@
+* code format
+'''
+
+:normal! gg=G
+
+'''
+
+*

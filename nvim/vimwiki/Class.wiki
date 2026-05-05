@@ -1,0 +1,24 @@
+= Overview of the Game =
+This game is roguelike that based on grid system.
+Thema : Fantasy
+Story : 
+The protagonist wakes up in a strange and mysterious place. He dive into the dark, deep dungeon.
+
+
+= Game System =
+    * Grid base system.
+    * not procedual
+
+* Player
+    * Move 
+    * Attack
+    * 
+        Manage Status
+
+
+* GridWorld
+
+
+
+* Entity
+    Entity is 

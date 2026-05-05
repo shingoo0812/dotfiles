@@ -1,0 +1,19 @@
+= Example =
+= Purpose =
+This Example is destroy the mobs when they leave the screen.
+To do so, we' ll connect our VisibleOnScreenNotfier3D node's screen_exited signal to the Mob.
+
+= Node Composition =
+    Mob(CharacterBody3D)
+    |_ Pivot(Node)
+    |   |_ Character(Node3D) *3d data
+    |_ CollisionShape3D
+    |_ VisibleOnScreenNotifier3D
+    
+= Setting Signal =
+Select the VisibleOnScreenNotifier3D node and on the right side of the interface, navigate to the Node dock. Double-click the screen_exited() signal.
+
+Connect the signal to the Mob
+
+This will add a new function for you in your mob script
+_on_visible_on_screen_notifier_3d_screen_exited(). From it, call the queue_free() method. This function destroys the instance it's called on.

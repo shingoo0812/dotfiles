@@ -1,0 +1,17 @@
+extends Node2D
+
+@export var grid_size := Vector2(16, 16)
+
+var has_moved := false
+
+func _ready() -> void:
+	pass
+	
+func _physics_process(delta: float) -> void:
+	var input_direction  := Input.get_vector("move_west", "move_east", "move_north", "move_south")
+
+	if input_direction && !has_moved:
+		global_position += input_direction*grid_size
+		has_moved = true
+	elif !input_direction:
+		has_moved = false

@@ -1,0 +1,1 @@
+-- ShaderHighlight: no configuration needed

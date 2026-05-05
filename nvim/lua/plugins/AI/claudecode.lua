@@ -1,0 +1,12 @@
+require('claudecode').setup()
+
+vim.keymap.set('n', '<leader>A', function() end, { desc = 'AI/Claude Code' })
+vim.keymap.set('n', '<leader>Ac', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
+vim.keymap.set('n', '<leader>Af', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
+vim.keymap.set('n', '<leader>Ar', '<cmd>ClaudeCode --resume<cr>', { desc = 'Resume Claude' })
+vim.keymap.set('n', '<leader>AC', '<cmd>ClaudeCode --continue<cr>', { desc = 'Continue Claude' })
+vim.keymap.set('n', '<leader>Am', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'Select Claude model' })
+vim.keymap.set('n', '<leader>Ab', '<cmd>ClaudeCodeAdd %<cr>', { desc = 'Add current buffer' })
+vim.keymap.set('v', '<leader>As', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
+vim.keymap.set('n', '<leader>Aa', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept diff' })
+vim.keymap.set('n', '<leader>Ad', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Deny diff' })

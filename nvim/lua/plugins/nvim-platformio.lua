@@ -1,0 +1,1 @@
+-- nvim-platformio: disabled (PlatformIO not installed)

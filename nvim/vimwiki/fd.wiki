@@ -1,0 +1,34 @@
+= Refferer URL =
+https://www.josean.com/posts/7-amazing-cli-tools
+= Setup fzf-git =
+fzf-git is a really nice script to look for git related things (commits, hashes, files and more) with fzf.
+
+Navigate to your home directory:
+
+-----------------------------------------------------
+cd
+Clone the repository:
+-----------------------------------------------------
+
+git clone https://github.com/junegunn/fzf-git.sh.git
+Open ~/.zshrc with preferred text editor and add to the bottom:
+
+-----------------------------------------------------
+
+source ~/fzf-git.sh/fzf-git.sh
+Save and in terminal run:
+
+-----------------------------------------------------
+
+source ~/.zshrc
+-----------------------------------------------------
+= Keybind	Description =
+    CTRL-GF	Look for git files with fzf
+    CTRL-GB	Look for git branches with fzf
+    CTRL-GT	Look for git tags with fzf
+    CTRL-GR	Look for git remotes with fzf
+    CTRL-GH	Look for git commit hashes with fzf
+    CTRL-GS	Look for git stashes with fzf
+    CTRL-GL	Look for git reflogs with fzf
+    CTRL-GW	Look for git worktrees with fzf
+    CTRL-GE	Look for git for-each-ref with fzf

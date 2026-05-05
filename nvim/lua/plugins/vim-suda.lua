@@ -1,0 +1,1 @@
+-- vim-suda: no configuration needed

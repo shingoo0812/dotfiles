@@ -1,0 +1,29 @@
+= Example1 =
+
+= Case =
+    * When an enemy hit the player, damage will occur. = Structure =
+    Mob(RigidBody2D)        Signal:body_entered()
+        |_ CollisionShape2D
+        |_ AnimatedSprite2D
+        |_ VisibleOnScreenNorifier2D    Signal:screen_exited()
+
+    Player(Area2D)             Signal:Hit(), body_enterd()->Hit() 
+        |_ CollisionShape2D
+        |_ AnimatedSprite2D
+    
+    Main(Node)
+        |_ Player(Area2D)           Signal:Hit()->GameOver()
+        |_ MobTimer(Timer)          Signal:timeout()->OnMobTimerTimeour()
+        |_ ScoreTimer(Timer)        Signal:timeout()->OnScoreTimerTimeout()
+        |_ StartTimer(Timer)        Signal:timeout()->OnStartTimerTimeout()
+        |_ StartPosition(Marker2D)
+        |_ MobPath(Path2D)
+        |   |_ MobSpawnLocation(PathFollow2D)
+        |_ HUD(CanvasLayer)         Signal:StartGame()->NewGame()
+        
+        
+* Idle and Physics Processing
+https://docs.godotengine.org/en/stable/tutorials/scripting/idle_and_physics_processing.html#doc-idle-and-physics-processing
+
+
+* Physics introduction

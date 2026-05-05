@@ -1,0 +1,8 @@
+= Tips =
+    * [[Collision]]
+    * [[Memory Management]]
+    * [[Leaving the screen]]
+    * [[Random Spawn by 3Dpath]]
+
+= Project =
+    * [[MyRogue]]

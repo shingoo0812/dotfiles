@@ -1,0 +1,16 @@
+
+- mount drvfs
+```
+```
+```Shell
+
+sudo mount -t drvfs H: /mnt/h
+```
+
+- Redirect
+```shell
+:redir >! output.txt
+:messages
+:redir END
+
+```

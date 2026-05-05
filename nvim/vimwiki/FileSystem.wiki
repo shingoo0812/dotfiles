@@ -1,0 +1,104 @@
+/                                ← The root directory (top of the entire filesystem)
+├── bin                          ← Essential commands used by the system
+│     (Examples: ls, cp, mv, rm, cat)
+│
+├── boot                         ← Files needed to start (boot) Linux
+│     (Examples: Linux kernel vmlinuz, GRUB bootloader files)
+│
+├── dev                          ← Device files representing hardware
+│     (Examples: /dev/sda = SSD/HDD, /dev/tty = terminal, /dev/null = data sink)
+│
+├── etc                          ← System configuration files
+│     (Examples: /etc/hosts, /etc/passwd, /etc/ssh/sshd_config)
+│
+├── home                         ← Home directories for normal users
+│   ├── user1                    ← user1’s personal files
+│   │       (Examples: Documents, Downloads, .bashrc)
+│   └── user2                    ← user2’s personal files
+│           (Same structure as user1)
+│
+├── root                         ← Home directory of the root (administrator) user
+│     (Example: root's .bashrc, root-only scripts)
+│
+├── tmp                          ← Temporary files (often deleted on reboot)
+│     (Examples: temp files created by applications, installer data)
+│
+├── usr                          ← Applications, libraries, documentation, etc.
+│   ├── bin                      ← Executable programs for users
+│   │       (Examples: python, gcc, nano, vim)
+│   ├── lib                      ← Shared libraries used by programs
+│   │       (Examples: libpython3.12.so, libssl.so)
+│   └── share                    ← Architecture-independent data
+│           (Examples: icons, fonts, man pages)
+│
+└── var                          ← Variable files (change frequently)
+    ├── log                      ← Log files
+    │       (Examples: syslog, auth.log, nginx/access.log)
+    ├── lib                      ← Service/application data
+    │       (Examples: databases, Docker state, apt data)
+    └── cache                    ← Cached data
+            (Examples: package manager caches, thumbnail cache)
+
+
+| Directory    | What it stores          | Easy way to remember      |
+| ------------ | ----------------------- | ------------------------- |
+| **/bin**     | Basic commands (ls, cp) | “biN = system commanDs”   |
+| **/sbin**    | Admin commands          | “Super bin”               |
+| **/etc**     | System settings         | “Everything To Configure” |
+| **/home**    | User files              | Like `C:\Users`           |
+| **/root**    | Admin’s home            | Root user’s house         |
+| **/tmp**     | Temp files              | Temporary storage         |
+| **/usr/bin** | Most apps               | “USer programs”           |
+| **/usr/lib** | Program libraries       | Shared code               |
+| **/var/log** | Logs                    | Varying data              |
+| **/dev**     | Hardware files          | DEVice files              |
+| **/mnt**     | Mount points            | External drives           |
+
+
+✅ 1. Windows vs Linux — Side-by-Side Comparison
+
+This table shows how the Linux file system compares to Windows.
+
+🔵 Basic concept
+
+| Windows                            | Linux                                                      |
+| ---------------------------------- | ---------------------------------------------------------- |
+| Uses multiple drives: `C:\`, `D:\` | One single tree starting at `/`                            |
+| Files are separated by drive       | Everything is under the root `/`                           |
+| System files stored in many places | Clear directory roles (etc = config, bin = commands, etc.) |
+
+
+🟢 User files
+
+| Windows                               | Linux                                |
+| ------------------------------------- | ------------------------------------ |
+| `C:\Users\Alice\Documents`            | `/home/alice/Documents`              |
+| Each user has a folder inside `Users` | Each user has a folder inside `home` |
+| Admin user: `Administrator`           | Admin user: `root` (home = `/root`)  |
+
+
+🟣 System files
+
+| Windows                                   | Linux                                           |
+| ----------------------------------------- | ----------------------------------------------- |
+| `C:\Windows`                              | `/usr`, `/etc`, `/bin`, `/lib`                  |
+| Registry stores settings                  | Config files in `/etc` (plain text)             |
+| System executables: `C:\Windows\System32` | System executables: `/bin`, `/sbin`, `/usr/bin` |
+
+
+🟠 Devices
+
+| Windows                  | Linux                                  |
+| ------------------------ | -------------------------------------- |
+| Disk = `C:\`, `D:\`      | Disk = `/dev/sda`, `/dev/nvme0n1`      |
+| USB = drive letters      | USB must be *mounted* (ex: `/mnt/usb`) |
+| Devices hidden from user | Devices appear as files in `/dev`      |
+
+
+🔴 Temporary & logs
+
+| Windows                 | Linux                          |
+| ----------------------- | ------------------------------ |
+| Temp: `C:\Windows\Temp` | Temp: `/tmp`                   |
+| Logs: Event Viewer      | Logs: `/var/log/` (plain text) |
+

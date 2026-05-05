@@ -1,0 +1,29 @@
+- Create Local Repository
+To create a local Git repository, follow these steps:
+
+```bash
+git init
+```
+- Setting Up Remote Repository
+1. Make new repository on Github
+2. Copy the repository URL (HTTPS or SSH)
+```bash
+git remote add origin <repository-URL>
+```
+
+- Check Remote Repository name
+```bash
+git remote -v
+```
+
+- Check Branch name
+```bash
+git branch -M main
+```
+- Make the first commit
+Add files, commit changes, and push to remote repository
+```bash
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+```

@@ -1,0 +1,5 @@
+Compile
+    clang++ -g -o mypro .\main.cpp  
+
+* [[.clang-format]]
+* 

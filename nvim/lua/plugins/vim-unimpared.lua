@@ -1,0 +1,1 @@
+-- vim-unimpaired: no configuration needed

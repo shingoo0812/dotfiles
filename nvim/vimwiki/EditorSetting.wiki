@@ -1,0 +1,7 @@
+=External Editor=
+    * How to change Godot's ExternalEditor to Neovim
+        *Editor > Editor Settings> External
+        1. Enable to [Use External Editor]
+        2. Specify to Exec Path to [neovim]
+        3. Input Exec Flags [--server ./godothost --remote-send "<C-\><C-N>:n{file}<CR>{line}F{col}|"]
+        --server 127.0.0.1:6004 --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"

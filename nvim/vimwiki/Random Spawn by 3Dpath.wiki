@@ -1,0 +1,73 @@
+= Example 1 =                           [[./indexx.wiki]]
+This is that use a PathFollow3D node to sample random locations on it.
+==============================================================================================================
+Index
+    1.[[#Node Composition]]
+    2.[[#Adding placeholder cylinders]]
+    3.[[#Add Path]]
+    4.[[#Spawning monsters randomly]]
+==============================================================================================================
+= Node Composition =
+    main(node)
+    |_ Cylinders(Node3D)
+    |    |_ MeshInstance3D
+    |    |_ MeshInstance3D2
+    |    |_ MeshInstance3D3
+    |    |_ MeshInstance3D4
+    |
+    |_ SpawnPath(Path3D)
+        |_ SpawnLocation(PathFollow3D)
+
+---------------------------------------------------------------------------------------------------------------
+== Adding placeholder cylinders ==
+Let's add the placeholder meshes. Add a new Node3D as a child of the Main node and name it Cylinders.
+We'll use it to group the Cylinders. Select Clinders and add a child node MeshInstance3D.
+
+In the Inspector, assign a CylinderMesh to the Mesh property.
+Place the CylinderMesh anywhere you like.
+We're going to create copies of the mesh and place them around the game area.
+
+We can now use the cylinders as guides.
+
+---------------------------------------------------------------------------------------------------------------
+== Add Path ==
+Add a child node Path3D to Main node.
+Click the Add Point tool, the icon with the green '+sign'.
+
+Once you have placed the points, we need a PathFollow3D node to sample random positions on it.
+Add a PathFollow3D as a child of the Path3D. Rename the two nodes to SpawnLocation and SpawnPath, respectively.
+With that, we're ready to code the spawn mechanism.
+
+
+---------------------------------------------------------------------------------------------------------------
+== Spawning monsters randomly ==
+Right-click on the Main node and attach a new script to it.
+We first export a variable to the Inspector so that we can assign mob.tscn or any other monster to it.
+
+```
+extends Node
+@export var mob_scene:PackedScene
+```
+`
+We want to spawn mobs at regular time intervals. To do this, we need to go back to the scene and add a timer.
+Before that, though, we need to assign the mob.tscn file to the mob_scene property above(otherwise it's null)
+
+Head back to the 3D screen and select the Main node. Drag mob.tscn from the FileSystem dock to the Mob Scene slot
+in the Inspector.
+
+Add a new Timer node as a child of Main. Name it MobTimer.
+In the Inspector, set its Wait Time to 0.5 seconds and turn on Autostart so it automatically starts when we run
+the game.
+
+Timers emit a timeout signal every time they reach the end of their Wait Time. By default, they restart
+automatically, emitting the signal in a cycle. we can connect to this signal from the Main node to spawn
+monsters every 0.5 seconds.
+
+With the MobTimer still selected, head to the Node dock on the right, and double-click the timeout signal.
+Connect it to the Main node.
+
+This will take you back to the script, with a new empty _on_mob_timer_timeout() function.
+
+Let's code the mob spawning logic. 
+[[./indexx.wiki]]
+

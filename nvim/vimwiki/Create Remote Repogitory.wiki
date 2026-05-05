@@ -1,0 +1,14 @@
+This page of this page is to explain how to create a remote repository on Github and push a local repository to the remote repository.
+
+= Steps =
+1. Create Remote Repository on Github.
+
+2. Create Local Repository
+    ```
+    git init .
+    git commit -m "first commit"
+    git branch -M main
+    git branch
+    git remote add origin <your git remote repository url>
+    git push origin [[main]]
+    ```

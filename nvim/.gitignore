@@ -1,0 +1,9 @@
+tags
+test.sh
+.luarc.json
+nvim
+
+spell/
+docker/.env 
+docker/*.log
+lazy-lock.json
