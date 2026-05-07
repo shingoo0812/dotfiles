@@ -5,10 +5,6 @@ services:
       dockerfile: ./Dockerfile
       context: .
       network: host
-    volumes:
-      - type: bind
-        source: "/root/.ssh"
-        target: "/root/.ssh"
     network_mode: bridge
     dns:
       - 8.8.8.8
