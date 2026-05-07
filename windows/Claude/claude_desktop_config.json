@@ -73,7 +73,7 @@
       },
       "timeout": 180000
     },
-    "filesystem": {
+    "wsl-filesystem": {
       "command": "wsl.exe",
       "args": [
         "bash",
@@ -81,7 +81,7 @@
         "npx -y @modelcontextprotocol/server-filesystem ~"
       ]
     },
-    "sequential-thinking": {
+    "wsl-sequential-thinking": {
       "command": "wsl.exe",
       "args": [
         "npx",
