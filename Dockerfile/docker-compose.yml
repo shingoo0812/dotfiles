@@ -2,5 +2,7 @@ services:
   nvim:
     build: .
     image: dotfiles-nvim
+    container_name: dotfiles-nvim
     stdin_open: true
     tty: true
+    command: tail -f /dev/null
