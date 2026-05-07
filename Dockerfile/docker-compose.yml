@@ -1,12 +1,15 @@
-version: '3.9'
-
 services:
   ubuntu:
     container_name: ubuntu
     build:
       dockerfile: ./Dockerfile
       context: .
+      network: host
     volumes:
       - type: bind
         source: "/root/.ssh"
         target: "/root/.ssh"
+    network_mode: bridge
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4

@@ -7,8 +7,15 @@ apt install -y curl git jq git ripgrep tar unzip wget ca-certificates python3 py
 RUN add-apt-repository ppa:neovim-ppa/unstable -y && \
     apt update && \
     apt install -y neovim
-# Clone dotfiles repository
-RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git ~/dotfiles
+# Configure git for better network stability
+RUN git config --global http.postBuffer 524288000 && \
+    git config --global http.lowSpeedLimit 0 && \
+    git config --global http.lowSpeedTime 999999
+# Clone dotfiles repository with retry logic
+RUN for i in 1 2 3 4 5; do \
+        git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git ~/dotfiles && break || \
+        echo "Retry $i failed, waiting..." && sleep 5; \
+    done
 # Install powerlevel10k
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
 # Delete default .bashrc
