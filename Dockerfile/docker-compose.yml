@@ -1,11 +1,6 @@
 services:
-  ubuntu:
-    container_name: ubuntu
-    build:
-      dockerfile: ./Dockerfile
-      context: .
-      network: host
-    network_mode: bridge
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+  nvim:
+    build: .
+    image: dotfiles-nvim
+    stdin_open: true
+    tty: true
