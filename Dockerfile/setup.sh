@@ -1,15 +1,15 @@
 #!/bin/bash
-# Neovim Docker setup script
-# Run this script in WSL
+set -e
 DOCKERFILE_DIR="$HOME/dotfiles/Dockerfile"
-# Build image
-echo "Building Docker image..."
+echo "Building complete Neovim Docker environment..."
 cd "$DOCKERFILE_DIR"
-docker compose build
-# Add nvim function to zshrc
-echo ""
-echo "Adding nvim function to ~/.zshrc..."
-cat >> ~/.zshrc << 'ZSHRC_EOF'
+# Build
+docker compose build --no-cache
+# Start
+docker compose up -d
+# Add nvim wrapper
+if ! grep -q "# Docker Neovim" ~/.zshrc 2>/dev/null; then
+    cat >> ~/.zshrc << 'WRAPPER'
 # Docker Neovim
 nvim() {
     docker run --rm -it \
@@ -18,7 +18,8 @@ nvim() {
         dotfiles-nvim \
         nvim "$@"
 }
-ZSHRC_EOF
+WRAPPER
+fi
 echo ""
 echo "✅ Setup complete!"
 echo ""

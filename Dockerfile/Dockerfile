@@ -1,10 +1,12 @@
 FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
+# Install packages
 RUN apt update && apt install -y \
     software-properties-common git curl wget unzip ripgrep fd-find && \
     add-apt-repository ppa:neovim-ppa/unstable -y && \
     apt update && apt install -y neovim && \
     rm -rf /var/lib/apt/lists/*
+# Clone dotfiles and setup nvim
 RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles && \
     mkdir -p /root/.config && \
     ln -s /root/dotfiles/nvim /root/.config/nvim
