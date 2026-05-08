@@ -39,6 +39,8 @@ config.max_fps = 60
 
 -- ===== Graphics Protocol Support =====
 config.enable_kitty_graphics = true
+-- Enable OSC52 clipboard reading (required for Neovim paste from host clipboard)
+config.enable_osc52_clipboard_reading = true
 -- Set term to wezterm for proper image rendering (required for Jupyter/Molten output)
 config.term = "wezterm"
 

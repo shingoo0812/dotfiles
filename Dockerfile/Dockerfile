@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
+
 # Install base packages and build tools
 RUN apt-get update && apt-get install -y \
     software-properties-common \
@@ -15,43 +16,57 @@ RUN apt-get update && apt-get install -y \
     && add-apt-repository ppa:neovim-ppa/unstable -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
+
 # Install .NET SDK 10.0 (required by csharp-ls 0.23.0+)
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 \
     && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
+
 # Set dotnet environment variables
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
+
 # Install csharp-ls 0.23.0 via dotnet tool (used directly via PATH, Mason install skipped below)
 RUN dotnet tool install -g csharp-ls --version 0.23.0
+
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
+
 # Install luarocks magick for image display
 RUN luarocks --local install magick
+
 # Clone dotfiles and setup nvim
 RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
     && mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
+
 # Remove csharp_ls from Mason ensure_installed (Mason's NuGet package is broken;
 # csharp-ls is already installed via dotnet tool and accessible via PATH)
 RUN sed -i "s/'csharp_ls', //g; s/, 'csharp_ls'//g; s/'csharp_ls'//g" \
     /root/dotfiles/nvim/lua/plugins/Lsp/nvim-lspconfig.lua
+
 # Patch Obsidian vault path: replace Windows path with Linux mount path
 RUN grep -rl "F:/Documents/ObsidianVault" /root/dotfiles/nvim \
     | xargs sed -i 's|F:/Documents/ObsidianVault|/mnt/f/Documents/ObsidianVault|g'
-# Append clipboard configuration using OSC52 (works inside Docker over terminal)
-RUN echo "" >> /root/.config/nvim/init.lua && \
-    echo "-- Clipboard configuration using OSC52 (Docker compatible)" >> /root/.config/nvim/init.lua && \
-    echo "vim.g.clipboard = {" >> /root/.config/nvim/init.lua && \
-    echo "  name = 'OSC 52'," >> /root/.config/nvim/init.lua && \
-    echo "  copy = {" >> /root/.config/nvim/init.lua && \
-    echo "    ['+'] = require('vim.ui.clipboard.osc52').copy('+')," >> /root/.config/nvim/init.lua && \
-    echo "    ['*'] = require('vim.ui.clipboard.osc52').copy('*')," >> /root/.config/nvim/init.lua && \
-    echo "  }," >> /root/.config/nvim/init.lua && \
-    echo "  paste = {" >> /root/.config/nvim/init.lua && \
-    echo "    ['+'] = require('vim.ui.clipboard.osc52').paste('+')," >> /root/.config/nvim/init.lua && \
-    echo "    ['*'] = require('vim.ui.clipboard.osc52').paste('*')," >> /root/.config/nvim/init.lua && \
-    echo "  }," >> /root/.config/nvim/init.lua && \
-    echo "}" >> /root/.config/nvim/init.lua
+
+# Append clipboard: OSC52 copy, register fallback for paste
+# Paste from host: use WezTerm Ctrl+Shift+V or right-click
+RUN python3 - << 'PYEOF'
+cfg = """
+-- Clipboard: OSC52 copy, register fallback paste
+-- To paste from host clipboard: use WezTerm Ctrl+Shift+V in insert mode
+local function paste()
+  return { vim.fn.split(vim.fn.getreg('"'), '\\n') }
+end
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy  = { ['+'] = require('vim.ui.clipboard.osc52').copy('+'), ['*'] = require('vim.ui.clipboard.osc52').copy('*') },
+  paste = { ['+'] = paste, ['*'] = paste },
+}
+"""
+with open('/root/.config/nvim/init.lua', 'a') as f:
+    f.write(cfg)
+PYEOF
+
 # Pre-install Neovim plugins at build time to avoid timeout on first launch
 RUN nvim --headless -c 'lua vim.pack.sync()' -c 'qa' 2>&1 | tail -10 || true
 
