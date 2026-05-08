@@ -1,16 +1,26 @@
 FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
-# Install packages
-RUN apt update && apt install -y \
-    software-properties-common git curl wget unzip ripgrep fd-find && \
-    add-apt-repository ppa:neovim-ppa/unstable -y && \
-    apt update && apt install -y neovim && \
-    rm -rf /var/lib/apt/lists/*
+# Install base packages and build tools
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    git curl wget unzip \
+    ripgrep fd-find \
+    gcc g++ make cmake \
+    python3 python3-pip python3-venv \
+    nodejs npm \
+    luarocks \
+    tar gzip xz-utils \
+    ca-certificates locales \
+    && add-apt-repository ppa:neovim-ppa/unstable -y \
+    && apt-get update && apt-get install -y neovim \
+    && rm -rf /var/lib/apt/lists/*
+# Install tree-sitter-cli (required for nvim-treesitter parser builds)
+RUN npm install -g tree-sitter-cli
 # Clone dotfiles and setup nvim
-RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles && \
-    mkdir -p /root/.config && \
-    ln -s /root/dotfiles/nvim /root/.config/nvim
-# Add clipboard configuration to init.lua (FIXED: array format)
+RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
+    && mkdir -p /root/.config \
+    && ln -s /root/dotfiles/nvim /root/.config/nvim
+# Append WSL Docker clipboard configuration to init.lua
 RUN echo "" >> /root/.config/nvim/init.lua && \
     echo "-- WSL Docker clipboard configuration" >> /root/.config/nvim/init.lua && \
     echo "vim.g.clipboard = {" >> /root/.config/nvim/init.lua && \
