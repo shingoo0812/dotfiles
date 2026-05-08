@@ -37,6 +37,9 @@ config.colors = {
 config.front_end = "OpenGL"
 config.max_fps = 60
 
+-- ===== Graphics Protocol Support =====
+config.enable_kitty_graphics = true
+
 -- ===== Scroll Settings =====
 config.enable_scroll_bar = true
 config.scrollback_lines = 350000
