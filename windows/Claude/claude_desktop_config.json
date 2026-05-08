@@ -76,6 +76,8 @@
     "wsl-filesystem": {
       "command": "wsl.exe",
       "args": [
+        "-u",
+        "shingo",
         "bash",
         "-c",
         "npx -y @modelcontextprotocol/server-filesystem /home/shingo"
