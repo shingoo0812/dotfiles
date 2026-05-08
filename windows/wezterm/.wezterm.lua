@@ -39,6 +39,8 @@ config.max_fps = 60
 
 -- ===== Graphics Protocol Support =====
 config.enable_kitty_graphics = true
+-- Set term to wezterm for proper image rendering (required for Jupyter/Molten output)
+config.term = "wezterm"
 
 -- ===== Scroll Settings =====
 config.enable_scroll_bar = true

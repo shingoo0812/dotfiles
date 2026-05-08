@@ -21,6 +21,11 @@ RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 \
 # Set dotnet environment variables (tools dir required for Mason's dotnet tool install)
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
+# Pre-install csharp-ls with a known working version to bypass Mason's broken package
+# Then symlink to Mason's bin dir so Mason treats it as installed
+RUN dotnet tool install -g csharp-ls --version 0.17.0 \
+    && mkdir -p /root/.local/share/nvim/mason/bin \
+    && ln -sf /root/.dotnet/tools/csharp-ls /root/.local/share/nvim/mason/bin/csharp-ls
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
