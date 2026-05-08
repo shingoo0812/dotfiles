@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
-# Install base packages, build tools, and .NET SDK dependencies
+# Install base packages and build tools
 RUN apt-get update && apt-get install -y \
     software-properties-common \
     git curl wget unzip \
@@ -12,10 +12,12 @@ RUN apt-get update && apt-get install -y \
     tar gzip xz-utils \
     ca-certificates locales \
     imagemagick \
-    dotnet-sdk-8.0 \
     && add-apt-repository ppa:neovim-ppa/unstable -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
+# Install .NET SDK 8.0 via Microsoft official script
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 \
+    && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
