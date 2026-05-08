@@ -78,7 +78,7 @@
       "args": [
         "bash",
         "-c",
-        "npx -y @modelcontextprotocol/server-filesystem ~"
+        "npx -y @modelcontextprotocol/server-filesystem /home/shingo"
       ]
     },
     "wsl-sequential-thinking": {
