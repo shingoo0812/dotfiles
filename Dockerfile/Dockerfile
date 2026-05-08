@@ -21,10 +21,8 @@ RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 
 # Set dotnet environment variables
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
-# Pre-install csharp-ls 0.23.0 and symlink to Mason's bin dir
-RUN dotnet tool install -g csharp-ls --version 0.23.0 \
-    && mkdir -p /root/.local/share/nvim/mason/bin \
-    && ln -sf /root/.dotnet/tools/csharp-ls /root/.local/share/nvim/mason/bin/csharp-ls
+# Install csharp-ls 0.23.0 via dotnet tool (used directly via PATH, Mason install skipped below)
+RUN dotnet tool install -g csharp-ls --version 0.23.0
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
@@ -33,6 +31,10 @@ RUN luarocks --local install magick
 RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
     && mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
+# Remove csharp_ls from Mason ensure_installed (Mason's NuGet package is broken;
+# csharp-ls is already installed via dotnet tool and accessible via PATH)
+RUN sed -i "s/'csharp_ls', //g; s/, 'csharp_ls'//g; s/'csharp_ls'//g" \
+    /root/dotfiles/nvim/lua/plugins/Lsp/nvim-lspconfig.lua
 # Patch Obsidian vault path: replace Windows path with Linux mount path
 RUN grep -rl "F:/Documents/ObsidianVault" /root/dotfiles/nvim \
     | xargs sed -i 's|F:/Documents/ObsidianVault|/mnt/f/Documents/ObsidianVault|g'
