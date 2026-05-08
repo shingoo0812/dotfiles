@@ -52,5 +52,8 @@ RUN echo "" >> /root/.config/nvim/init.lua && \
     echo "    ['*'] = require('vim.ui.clipboard.osc52').paste('*')," >> /root/.config/nvim/init.lua && \
     echo "  }," >> /root/.config/nvim/init.lua && \
     echo "}" >> /root/.config/nvim/init.lua
+# Pre-install Neovim plugins at build time to avoid timeout on first launch
+RUN nvim --headless -c 'lua vim.pack.sync()' -c 'qa' 2>&1 | tail -10 || true
+
 WORKDIR /workspace
 CMD ["/bin/bash"]
