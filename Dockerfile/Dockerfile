@@ -55,7 +55,7 @@ cfg = """
 -- Clipboard: OSC52 copy, register fallback paste
 -- To paste from host clipboard: use WezTerm Ctrl+Shift+V in insert mode
 local function paste()
-  return { vim.fn.split(vim.fn.getreg('"'), '\\n') }
+  return { vim.fn.split(vim.fn.getreg(chr(39)chr(34)chr(39)), chr(39)\\nchr(39)), vim.fn.getregtype(chr(39)chr(34)chr(39)) }
 end
 vim.g.clipboard = {
   name = 'OSC 52',
