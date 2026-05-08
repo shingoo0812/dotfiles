@@ -15,15 +15,14 @@ RUN apt-get update && apt-get install -y \
     && add-apt-repository ppa:neovim-ppa/unstable -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
-# Install .NET SDK 8.0 via Microsoft official script
-RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 \
+# Install .NET SDK 10.0 (required by csharp-ls 0.23.0+)
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 \
     && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
-# Set dotnet environment variables (tools dir required for Mason's dotnet tool install)
+# Set dotnet environment variables
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
-# Pre-install csharp-ls with a known working version to bypass Mason's broken package
-# Then symlink to Mason's bin dir so Mason treats it as installed
-RUN dotnet tool install -g csharp-ls --version 0.17.0 \
+# Pre-install csharp-ls 0.23.0 and symlink to Mason's bin dir
+RUN dotnet tool install -g csharp-ls --version 0.23.0 \
     && mkdir -p /root/.local/share/nvim/mason/bin \
     && ln -sf /root/.dotnet/tools/csharp-ls /root/.local/share/nvim/mason/bin/csharp-ls
 # Install global npm packages
