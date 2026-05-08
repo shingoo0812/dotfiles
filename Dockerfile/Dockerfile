@@ -23,11 +23,6 @@ ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
 # Install csharp-ls 0.23.0 via dotnet tool (used directly via PATH, Mason install skipped below)
 RUN dotnet tool install -g csharp-ls --version 0.23.0
-# Install Python packages for Molten/Jupyter
-RUN pip install --break-system-packages \
-    matplotlib numpy pandas scipy \
-    jupyter ipykernel ipython
-
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display

@@ -7,6 +7,5 @@ services:
     tty: true
     command: tail -f /dev/null
     volumes:
-      - /mnt/c:/mnt/c:ro          # Windows C drive (read-only)
-      - /mnt/f:/mnt/f:ro          # Windows F drive for Obsidian vault (read-only)
+      - /mnt:/mnt                 # All Windows drives (C, F, etc.) dynamically
       - ~/workspace:/workspace    # Host workspace (read-write)
