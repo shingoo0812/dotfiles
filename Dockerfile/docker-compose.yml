@@ -7,4 +7,5 @@ services:
     tty: true
     command: tail -f /dev/null
     volumes:
-      - /mnt/c:/mnt/c:ro
+      - /mnt/c:/mnt/c:ro          # Windows drive (read-only)
+      - ~/workspace:/workspace    # Host workspace (read-write)
