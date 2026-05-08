@@ -18,9 +18,9 @@ RUN apt-get update && apt-get install -y \
 # Install .NET SDK 8.0 via Microsoft official script
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 8.0 \
     && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
-# Set dotnet environment variables for Mason and other tools
+# Set dotnet environment variables (tools dir required for Mason's dotnet tool install)
 ENV DOTNET_ROOT=/root/.dotnet
-ENV PATH=$PATH:/root/.dotnet
+ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
