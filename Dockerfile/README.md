@@ -1,13 +1,12 @@
 ## NOTE: Using fast DNS during the build process requires daemon configuration in Docker Desktop
 Docker Desktop -> Settings -> Docker Engine
-```json
+```
 {
   "dns": ["8.8.8.8", "1.1.1.1"]
 }
 
 ```
 
-#987248
 
 ## Basic Command
 1.docker up detach
