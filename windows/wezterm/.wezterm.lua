@@ -344,4 +344,11 @@ config.keys = {
 }
 
 -- Finally, return the configuration to wezterm:
+-- Paste to Neovim (works inside Docker/SSH)
+table.insert(config.keys, {
+  key = "v",
+  mods = "CTRL|SHIFT",
+  action = wezterm.action.PasteFrom("Clipboard"),
+})
+
 return config
