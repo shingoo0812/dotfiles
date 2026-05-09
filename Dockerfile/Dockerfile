@@ -32,8 +32,12 @@ RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
 RUN luarocks --local install magick
 
-# Clone dotfiles and setup nvim (submodules separately to handle network issues)
-RUN git clone --depth=1 https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
+# Clone dotfiles with retry logic and increased buffer to handle unstable network
+RUN git config --global http.postBuffer 524288000 \
+    && for i in 1 2 3 4 5; do \
+      git clone --depth=1 https://github.com/shingoo0812/dotfiles.git /root/dotfiles && break; \
+      echo "Retry $i failed, retrying..."; sleep 5; \
+    done \
     && mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
 
