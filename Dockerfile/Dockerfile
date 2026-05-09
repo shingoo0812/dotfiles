@@ -37,6 +37,9 @@ COPY nvim /root/dotfiles/nvim
 RUN mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
 
+# Disable mcphub plugin (mcp-hub not available in Docker)
+RUN rm /root/dotfiles/nvim/lua/plugins/AI/mcphub.lua
+
 # Remove csharp_ls from Mason ensure_installed (Mason's NuGet package is broken;
 # csharp-ls is already installed via dotnet tool and accessible via PATH)
 RUN sed -i "s/'csharp_ls', //g; s/, 'csharp_ls'//g; s/'csharp_ls'//g" \
