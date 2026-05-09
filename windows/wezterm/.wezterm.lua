@@ -296,7 +296,7 @@ config.keys = {
 
 	-- ===== Search =====
 	{
-		key = "/",
+		key = ",",
 		mods = "CTRL",
 		action = act.Search("CurrentSelectionOrEmptyString"),
 	},
