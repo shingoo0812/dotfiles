@@ -46,24 +46,9 @@ RUN sed -i "s/'csharp_ls', //g; s/, 'csharp_ls'//g; s/'csharp_ls'//g" \
 RUN grep -rl "F:/Documents/ObsidianVault" /root/dotfiles/nvim \
     | xargs sed -i 's|F:/Documents/ObsidianVault|/mnt/f/Documents/ObsidianVault|g'
 
-# Append clipboard: OSC52 copy, register fallback for paste
-# Paste from host: use WezTerm Ctrl+Shift+V or right-click
-RUN python3 - << 'PYEOF'
-cfg = """
--- Clipboard: OSC52 copy, register fallback paste
--- To paste from host clipboard: use WezTerm Ctrl+Shift+V in insert mode
-local function paste()
-  return { vim.fn.split(vim.fn.getreg(chr(39)chr(34)chr(39)), chr(39)\\nchr(39)), vim.fn.getregtype(chr(39)chr(34)chr(39)) }
-end
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy  = { ['+'] = require('vim.ui.clipboard.osc52').copy('+'), ['*'] = require('vim.ui.clipboard.osc52').copy('*') },
-  paste = { ['+'] = paste, ['*'] = paste },
-}
-"""
-with open('/root/.config/nvim/init.lua', 'a') as f:
-    f.write(cfg)
-PYEOF
+# Append clipboard configuration from patch file
+RUN cat /root/dotfiles/nvim/clipboard_patch.lua >> /root/.config/nvim/init.lua
+
 
 # Pre-install Neovim plugins at build time to avoid timeout on first launch
 RUN nvim --headless -c 'lua vim.pack.sync()' -c 'qa' 2>&1 | tail -10 || true
