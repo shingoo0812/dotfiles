@@ -9,24 +9,23 @@
 - When creating or updating any Claude.md file, always use English
 
 ## File Operation Rules
-
 ### Priority Order for Execution
--  MCP: Always attempt operations vis Powershell MCP first.
-- Next, try WSL.
-- If you use Neovim WSL, check if Neovim is running.
+- MCP: Always attempt operations via PowerShell MCP first (Windows paths only)
+- For Linux paths (/home/...), provide bash or Python commands for user to run in terminal
 
 ### Target-Based Tool Selection
 **Writing to Windows filesystem (C:\Users\...):**
 - ALWAYS use PowerShell `Set-Content` or `Out-File` directly
-- NEVER use bash with `/mnt/c/` paths (frequently fails due to OneDrive/permissions)
-- Example:
-  ```powershell
-  @'content'@ | Set-Content -Path "C:\path\file.txt" -Encoding UTF8
-  ```
+- For content with complex quotes, write a Python script file first then execute
 
-**Working in Linux environment (/home/claude/, /mnt/user-data/):**
-- ALWAYS use bash tools
-- NEVER try PowerShell for these paths
+**Writing to Linux filesystem (/home/...):**
+- Provide short bash commands for user to run in terminal
+- For complex content with quotes, use Python heredoc:
+```bash
+  python3 << 'EOF'
+  open("/path/to/file", "w").write("content")
+  EOF
+```
 
 **If operation fails:**
 - Stop immediately and report the error
