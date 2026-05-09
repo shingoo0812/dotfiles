@@ -17,16 +17,14 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
 
-# Install .NET SDK 10.0 (required by csharp-ls 0.23.0+)
+# Install .NET SDK 10.0 and csharp-ls in a single RUN to avoid PATH issues
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 \
-    && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet
+    && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet \
+    && /root/.dotnet/dotnet tool install -g csharp-ls --version 0.23.0
 
 # Set dotnet environment variables
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
-
-# Install csharp-ls 0.23.0 via dotnet tool (used directly via PATH, Mason install skipped below)
-RUN dotnet tool install -g csharp-ls --version 0.23.0
 
 # Install global npm packages
 RUN npm install -g tree-sitter-cli mcp-hub@latest
