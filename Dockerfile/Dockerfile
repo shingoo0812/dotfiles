@@ -32,6 +32,9 @@ RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygi
     && tar xf /tmp/lazygit.tar.gz -C /usr/local/bin lazygit \
     && rm /tmp/lazygit.tar.gz
 
+# Install Python packages required for Molten
+RUN pip install --break-system-packages pynvim jupyter_client ipykernel matplotlib numpy
+
 # Install global npm packages
 RUN npm install -g tree-sitter-cli
 
