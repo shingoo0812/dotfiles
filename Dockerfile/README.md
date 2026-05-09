@@ -8,6 +8,12 @@ Docker Desktop -> Settings -> Docker Engine
 ```
 
 
+## NOTE: 
+```
+:UpdateRemotePlugins
+
+```
+
 ## Basic Command
 1.docker up detach
 docker compose up -d
