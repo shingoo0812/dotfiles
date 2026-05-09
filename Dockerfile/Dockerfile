@@ -51,7 +51,10 @@ RUN cat /root/dotfiles/nvim/clipboard_patch.lua >> /root/.config/nvim/init.lua
 
 
 # Pre-install Neovim plugins at build time to avoid timeout on first launch
-RUN nvim --headless -c 'lua vim.pack.sync()' -c 'qa' 2>&1 | tail -10 || true
-
+# Pre-install plugins with extended timeout (10 minutes)
+RUN nvim --headless \
+    --cmd 'lua local o=vim.wait; vim.wait=function(_,...)return o(600000,...)end' \
+    -c 'lua vim.pack.sync()' \
+    -c 'qa' 2>&1 || true
 WORKDIR /workspace
 CMD ["/bin/bash"]
