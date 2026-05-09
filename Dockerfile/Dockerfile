@@ -32,16 +32,10 @@ RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
 RUN luarocks --local install magick
 
-# Clone dotfiles with retry logic and increased buffer to handle unstable network
-RUN git config --global http.postBuffer 524288000 \
-    && for i in 1 2 3 4 5; do \
-      git clone --depth=1 https://github.com/shingoo0812/dotfiles.git /root/dotfiles && break; \
-      echo "Retry $i failed, retrying..."; sleep 5; \
-    done \
-    && mkdir -p /root/.config \
+# Copy nvim config directly from host build context (no network dependency)
+COPY nvim /root/dotfiles/nvim
+RUN mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
-
-RUN cd /root/dotfiles && git submodule update --init --recursive --depth=1
 
 # Remove csharp_ls from Mason ensure_installed (Mason's NuGet package is broken;
 # csharp-ls is already installed via dotnet tool and accessible via PATH)
