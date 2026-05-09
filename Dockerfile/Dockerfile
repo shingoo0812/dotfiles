@@ -27,7 +27,7 @@ ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
 
 # Install global npm packages
-RUN npm install -g tree-sitter-cli mcp-hub@latest
+RUN npm install -g tree-sitter-cli
 
 # Install luarocks magick for image display
 RUN luarocks --local install magick
