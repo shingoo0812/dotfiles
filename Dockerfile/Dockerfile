@@ -32,10 +32,12 @@ RUN npm install -g tree-sitter-cli mcp-hub@latest
 # Install luarocks magick for image display
 RUN luarocks --local install magick
 
-# Clone dotfiles and setup nvim
-RUN git clone --depth=1 --recursive https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
+# Clone dotfiles and setup nvim (submodules separately to handle network issues)
+RUN git clone --depth=1 https://github.com/shingoo0812/dotfiles.git /root/dotfiles \
     && mkdir -p /root/.config \
     && ln -s /root/dotfiles/nvim /root/.config/nvim
+
+RUN cd /root/dotfiles && git submodule update --init --recursive --depth=1
 
 # Remove csharp_ls from Mason ensure_installed (Mason's NuGet package is broken;
 # csharp-ls is already installed via dotnet tool and accessible via PATH)
