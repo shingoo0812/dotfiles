@@ -26,6 +26,12 @@ RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 
 ENV DOTNET_ROOT=/root/.dotnet
 ENV PATH=$PATH:/root/.dotnet:/root/.dotnet/tools
 
+# Install lazygit
+RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') \
+    && curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" \
+    && tar xf /tmp/lazygit.tar.gz -C /usr/local/bin lazygit \
+    && rm /tmp/lazygit.tar.gz
+
 # Install global npm packages
 RUN npm install -g tree-sitter-cli
 

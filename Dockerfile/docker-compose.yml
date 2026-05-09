@@ -14,4 +14,8 @@ services:
     volumes:
       - /mnt:/mnt                 # All Windows drives (C, F, etc.) dynamically
       - ~/workspace:/workspace
-      - /home/shingo:/wsl/home    # Host workspace (read-write)
+      - /home/shingo:/wsl/home
+      - nvim_data:/root/.local/share/nvim    # Host workspace (read-write)
+
+volumes:
+  nvim_data:
