@@ -19,6 +19,12 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
 
+# Set environment variables for all sessions including SSH
+RUN echo 'export DOTNET_ROOT=/root/.dotnet' >> /root/.profile \
+    && echo 'export PATH=$PATH:/root/.dotnet:/root/.dotnet/tools' >> /root/.profile \
+    && echo 'export JUPYTER_RUNTIME_DIR=/root/.local/share/jupyter/runtime' >> /root/.profile \
+    && echo 'export TERM=wezterm' >> /root/.profile
+
 # Configure SSH server
 RUN mkdir -p /var/run/sshd /root/.ssh \
     && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config \
