@@ -8,6 +8,8 @@ services:
     stdin_open: true
     tty: true
     command: bash -c "mkdir -p /root/.local/share/jupyter/runtime && tail -f /dev/null"
+    ports:
+      - "2222:22"
     environment:
       - TERM=wezterm
       - JUPYTER_RUNTIME_DIR=/tmp/jupyter/runtime

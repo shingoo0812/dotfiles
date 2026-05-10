@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     tar gzip xz-utils \
     ca-certificates locales \
     imagemagick \
+    openssh-server \
     python-is-python3 \
     && add-apt-repository ppa:neovim-ppa/unstable -y \
     && apt-get update && apt-get install -y neovim \
@@ -73,4 +74,4 @@ RUN nvim --headless \
 RUN nvim --headless -c 'UpdateRemotePlugins' -c 'qa' 2>&1 || true
 RUN mkdir -p /root/.local/share/jupyter/runtime
 WORKDIR /workspace
-CMD ["bash", "-c", "mkdir -p /root/.local/share/jupyter/runtime && tail -f /dev/null"]
+CMD ["bash", "-c", "mkdir -p /root/.ssh /root/.local/share/jupyter/runtime && cp /wsl/home/.ssh/id_ed25519.pub /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && service ssh start && tail -f /dev/null"]
