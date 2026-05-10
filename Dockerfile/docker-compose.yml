@@ -7,7 +7,7 @@ services:
     container_name: dotfiles-nvim
     stdin_open: true
     tty: true
-    command: bash -c "mkdir -p /root/.local/share/jupyter/runtime && tail -f /dev/null"
+    command: bash -c "mkdir -p /root/.ssh /root/.local/share/jupyter/runtime && cp /wsl/home/.ssh/id_ed25519.pub /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && service ssh start && tail -f /dev/null"
     ports:
       - "2222:22"
     environment:
