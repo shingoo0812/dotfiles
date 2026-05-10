@@ -351,4 +351,13 @@ table.insert(config.keys, {
   action = wezterm.action.PasteFrom("Clipboard"),
 })
 
+-- SSH domain for Docker Neovim (WezTerm SSH bypasses ConPTY for kitty graphics)
+config.ssh_domains = {
+  {
+    name = 'docker-nvim',
+    remote_address = 'localhost:2222',
+    username = 'root',
+  },
+}
+
 return config
