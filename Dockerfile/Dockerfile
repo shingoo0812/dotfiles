@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     tar gzip xz-utils \
     ca-certificates locales \
     imagemagick \
+    libmagickwand-dev \
     openssh-server \
     python-is-python3 \
     && add-apt-repository ppa:neovim-ppa/unstable -y \
