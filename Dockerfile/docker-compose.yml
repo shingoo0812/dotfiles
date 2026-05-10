@@ -8,6 +8,8 @@ services:
     stdin_open: true
     tty: true
     command: tail -f /dev/null
+    environment:
+      - TERM=wezterm
     dns:
       - 8.8.8.8
       - 1.1.1.1
