@@ -228,3 +228,5 @@ end
 load_config_recursive(config_path, 'config.')
 
 -- vim: ts=2 sts=2 sw=2 et
+
+require('clipboard_patch')
