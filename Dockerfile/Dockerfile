@@ -55,7 +55,7 @@ RUN pip install --break-system-packages pynvim jupyter_client ipykernel matplotl
 RUN npm install -g tree-sitter-cli
 
 # Install luarocks magick for image display
-RUN luarocks --local install magick
+RUN luarocks install magick
 
 # Copy nvim config directly from host build context (no network dependency)
 COPY nvim /root/dotfiles/nvim
