@@ -2,7 +2,7 @@ require('obsidian').setup {
   workspaces = {
     {
       name = 'notes',
-      path = 'F:/Documents/ObsidianVault',
+      path = vim.fn.has('win32') == 1 and 'F:/Documents/ObsidianVault' or (vim.fn.has('wsl') == 1 and '/mnt/f/Documents/ObsidianVault' or '/mnt/f/Documents/ObsidianVault'),
     },
   },
   daily_notes = {
