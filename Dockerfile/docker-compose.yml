@@ -10,6 +10,7 @@ services:
     command: tail -f /dev/null
     environment:
       - TERM=wezterm
+      - JUPYTER_RUNTIME_DIR=/tmp/jupyter/runtime
     dns:
       - 8.8.8.8
       - 1.1.1.1
