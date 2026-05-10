@@ -73,4 +73,4 @@ RUN nvim --headless \
 RUN nvim --headless -c 'UpdateRemotePlugins' -c 'qa' 2>&1 || true
 RUN mkdir -p /root/.local/share/jupyter/runtime
 WORKDIR /workspace
-CMD ["/bin/bash"]
+CMD ["bash", "-c", "mkdir -p /root/.local/share/jupyter/runtime && tail -f /dev/null"]
