@@ -21,3 +21,8 @@ else
     paste = { ['+'] = my_paste('+'), ['*'] = my_paste('*') },
   }
 end
+
+-- Set Python3 host for remote plugins (Molten)
+if vim.fn.has('wsl') == 1 then
+  vim.g.python3_host_prog = '/usr/bin/python3'
+end
