@@ -19,6 +19,14 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y neovim \
     && rm -rf /var/lib/apt/lists/*
 
+# Configure SSH server
+RUN mkdir -p /var/run/sshd /root/.ssh \
+    && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config \
+    && echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config \
+    && echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
+    && echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config \
+    && chmod 700 /root/.ssh
+
 # Install .NET SDK 10.0 and csharp-ls in a single RUN to avoid PATH issues
 RUN curl -fsSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 \
     && ln -s /root/.dotnet/dotnet /usr/local/bin/dotnet \
