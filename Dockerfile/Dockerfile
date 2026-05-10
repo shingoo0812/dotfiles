@@ -69,5 +69,8 @@ RUN nvim --headless \
     --cmd 'lua local o=vim.wait; vim.wait=function(_,...)return o(600000,...)end' \
     -c 'lua vim.pack.sync()' \
     -c 'qa' 2>&1 || true
+# Register remote plugins and create Jupyter runtime directory
+RUN nvim --headless -c 'UpdateRemotePlugins' -c 'qa' 2>&1 || true
+RUN mkdir -p /root/.local/share/jupyter/runtime
 WORKDIR /workspace
 CMD ["/bin/bash"]
