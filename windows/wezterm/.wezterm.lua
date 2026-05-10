@@ -355,7 +355,7 @@ table.insert(config.keys, {
 config.ssh_domains = {
   {
     name = 'docker-nvim',
-    remote_address = 'localhost:2222',
+    remote_address = '127.0.0.1:2222',
     username = 'root',
   },
 }

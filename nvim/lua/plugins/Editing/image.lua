@@ -2,7 +2,8 @@
 -- Requires: ImageMagick and luarocks magick package
 -- Check if ImageMagick is available
 local function check_imagemagick()
-  local handle = io.popen('convert --version 2>&1')
+  local cmd = vim.fn.has('win32') == 1 and 'magick --version 2>&1' or 'convert --version 2>&1'
+  local handle = io.popen(cmd)
   if handle then
     local result = handle:read('*a')
     handle:close()
