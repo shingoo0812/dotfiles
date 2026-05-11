@@ -54,11 +54,11 @@ config.window_padding = {
 	bottom = 8,
 }
 
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.88
 config.text_background_opacity = 1.0
 
 if is_windows then
-	config.win32_system_backdrop = "Acrylic"
+	-- config.win32_system_backdrop = "Acrylic"
 elseif is_macos then
 	config.macos_window_background_blur = 30
 elseif is_linux then
@@ -298,4 +298,3 @@ config.ssh_domains = {
 }
 
 return config
-
