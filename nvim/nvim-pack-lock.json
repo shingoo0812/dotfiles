@@ -410,6 +410,10 @@
       "rev": "a54a3002e229c4b43d69ced170ff77663a5b2c40",
       "src": "https://github.com/vimwiki/vimwiki"
     },
+    "wezterm.nvim": {
+      "rev": "032c33b621b96cc7228955b4352b48141c482098",
+      "src": "https://github.com/willothy/wezterm.nvim"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"

@@ -345,19 +345,19 @@ config.keys = {
 
 -- Finally, return the configuration to wezterm:
 -- Paste to Neovim (works inside Docker/SSH)
-table.insert(config.keys, {
-  key = "v",
-  mods = "CTRL|SHIFT",
-  action = wezterm.action.PasteFrom("Clipboard"),
-})
+-- table.insert(config.keys, {
+--   key = "v",
+--   mods = "CTRL|SHIFT",
+--   action = wezterm.action.PasteFrom("Clipboard"),
+-- })
 
 -- SSH domain for Docker Neovim (WezTerm SSH bypasses ConPTY for kitty graphics)
 config.ssh_domains = {
-  {
-    name = 'docker-nvim',
-    remote_address = '127.0.0.1:2222',
-    username = 'root',
-  },
+	{
+		name = "docker-nvim",
+		remote_address = "127.0.0.1:2222",
+		username = "root",
+	},
 }
 
 return config

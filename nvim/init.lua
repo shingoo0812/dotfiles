@@ -92,6 +92,7 @@ vim.pack.add {
   'https://github.com/mg979/vim-visual-multi',
   'https://github.com/junegunn/vim-easy-align',
   { src = 'https://github.com/benlubas/molten-nvim', version = 'v1.9.2' },
+  'https://github.com/willothy/wezterm.nvim',
   'https://github.com/3rd/image.nvim',
   'https://github.com/jbyuki/venn.nvim',
   'https://github.com/GCBallesteros/jupytext.nvim',
