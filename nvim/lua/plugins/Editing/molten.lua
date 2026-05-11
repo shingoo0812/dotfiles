@@ -6,6 +6,9 @@ vim.g.molten_auto_open_output = false
 vim.g.molten_wrap_output = true
 vim.g.molten_virt_text_output = true
 vim.g.molten_virt_lines_off_by_1 = true
+vim.g.molten_use_outside_of_neovim = false
+vim.g.molten_image_location = 'virt'
+vim.g.molten_copy_output = false
 
 vim.api.nvim_create_autocmd('BufReadPost', {
   pattern = '*.ipynb',
