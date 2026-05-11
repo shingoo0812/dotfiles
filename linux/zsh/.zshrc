@@ -363,3 +363,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias wsl='/mnt/c/Windows/System32/wsl.exe'
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin
