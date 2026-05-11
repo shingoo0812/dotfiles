@@ -67,6 +67,7 @@ Get-ChildItem -Recurse -Depth 2 | Select-Object -First 100
 - Atomic Operations: Break complex workflows into multiple tool calls. If a task involves writing a file and then verifying it, do these in separate steps to keep each response under the 60s threshold.
 - Avoid Multi-Level Escaping: Do not wrap Python scripts inside PowerShell strings if it complicates parsing. Use the most native tool available (e.g., direct PowerShell Set-Content with @' ... '@ strings) to minimize overhead.
 - Fail Fast & Report: If you anticipate a command might take longer than 45 seconds, preemptively split the task or use a background execution strategy.
+
 ## PowerShell MCP Python Execution Rules
 
 ### Mandatory Format
@@ -105,3 +106,4 @@ Get-Content output.txt
 ### Prohibited
 - Never use `python` directly (PATH not inherited in MCP)
 - Never omit `-u` flag (output will be buffered/lost)
+- Replacing only a portion of a file is prohibited as it can cause a timeout. Either rewrite the entire file at once using Set-Content, or create a temporary file using create-powershell-script before executing the command.

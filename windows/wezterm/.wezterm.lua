@@ -25,7 +25,7 @@ config.color_scheme = "Tokyo Night"
 config.colors = {
 	cursor_bg = "#7aa2f7",
 	cursor_border = "#7aa2f7",
-	background = "#1a1b26",
+	background = "#110441",
 	foreground = "#c0caf5",
 }
 
@@ -61,6 +61,9 @@ if is_windows then
 	config.win32_system_backdrop = "Acrylic"
 elseif is_macos then
 	config.macos_window_background_blur = 30
+elseif is_linux then
+	-- Linux doesn't have native blur, but transparency still works
+	config.window_background_opacity = 0.88
 end
 
 config.send_composed_key_when_left_alt_is_pressed = false
@@ -295,3 +298,4 @@ config.ssh_domains = {
 }
 
 return config
+
