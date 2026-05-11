@@ -61,6 +61,12 @@ Get-ChildItem -Recurse
 Get-ChildItem -Recurse -Depth 2 | Select-Object -First 100
 ```
 
+**MANDATORY SYSTEM INSTRUCTION FOR AI AGENTS**
+
+- Zero-Tolerance for Inline Bloat: Do not generate single-line commands exceeding 1000 characters. If the payload (e.g., a config file) is large, you MUST use the create-powershell-script tool to write the content to a temporary .ps1 file first, then execute it.
+- Atomic Operations: Break complex workflows into multiple tool calls. If a task involves writing a file and then verifying it, do these in separate steps to keep each response under the 60s threshold.
+- Avoid Multi-Level Escaping: Do not wrap Python scripts inside PowerShell strings if it complicates parsing. Use the most native tool available (e.g., direct PowerShell Set-Content with @' ... '@ strings) to minimize overhead.
+- Fail Fast & Report: If you anticipate a command might take longer than 45 seconds, preemptively split the task or use a background execution strategy.
 ## PowerShell MCP Python Execution Rules
 
 ### Mandatory Format

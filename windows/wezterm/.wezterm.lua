@@ -2,93 +2,72 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- OS Detection
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 local is_linux = wezterm.target_triple:find("linux") ~= nil
 local is_macos = wezterm.target_triple:find("darwin") ~= nil
 
--- ===== Basic Settings =====
 config.automatically_reload_config = true
 config.initial_cols = 120
 config.initial_rows = 28
 
--- ===== Font Settings =====
 config.font = wezterm.font_with_fallback({
-	"JetBrainsMono Nerd Font Mono", -- Primary text
-	"Noto Sans CJK JP", -- Japanese
-	"Noto Color Emoji", -- Emojis
+	"JetBrainsMono Nerd Font Mono",
+	"Noto Sans CJK JP",
+	"Noto Color Emoji",
 })
 config.font_size = 12
 config.warn_about_missing_glyphs = false
--- Enable ligatures (e.g., -> =>)
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
 
--- ===== Color Scheme =====
-config.color_scheme = "AdventureTime"
+config.color_scheme = "Tokyo Night"
 config.colors = {
-	cursor_bg = "#FFFFFF",
-	cursor_border = "#FFFFFF",
+	cursor_bg = "#7aa2f7",
+	cursor_border = "#7aa2f7",
+	background = "#1a1b26",
+	foreground = "#c0caf5",
 }
 
--- ===== GPU Rendering =====
 config.front_end = "OpenGL"
 config.max_fps = 60
 
--- ===== Graphics Protocol Support =====
 config.enable_kitty_graphics = true
--- Set term to wezterm for proper image rendering (required for Jupyter/Molten output)
 config.term = "wezterm"
 
--- ===== Scroll Settings =====
 config.enable_scroll_bar = true
 config.scrollback_lines = 350000
--- Scroll speed for mouse wheel
 config.alternate_buffer_wheel_scroll_speed = 3
 
--- ===== Tab Bar Settings =====
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_max_width = 25
 
--- ===== Window Settings =====
 config.window_decorations = "RESIZE|TITLE"
 config.default_cursor_style = "BlinkingBar"
 config.window_close_confirmation = "AlwaysPrompt"
--- Window padding
 config.window_padding = {
-	left = 5,
-	right = 5,
-	top = 5,
-	bottom = 5,
+	left = 8,
+	right = 8,
+	top = 8,
+	bottom = 8,
 }
 
--- ===== Transparency Settings =====
-config.window_background_opacity = 1.0 -- Opaque for better readability
+config.window_background_opacity = 0.7
+config.text_background_opacity = 1.0
 
--- OS Specific Settings
 if is_windows then
-	-- Windows specific logic
+	config.win32_system_backdrop = "Acrylic"
 elseif is_macos then
-	-- macOS blur effects
-	-- config.macos_window_background_blur = 20
-elseif is_linux then
-	-- Linux specific logic
+	config.macos_window_background_blur = 30
 end
 
--- ===== Alt/Option Key Settings =====
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = false
 
--- ===== Hyperlink Settings =====
--- Detect URLs and make them clickable
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
--- ===== Mouse Bindings =====
--- Right click to paste
 config.mouse_bindings = {
 	{
 		event = { Down = { streak = 1, button = "Right" } },
@@ -98,7 +77,6 @@ config.mouse_bindings = {
 }
 
 if is_windows then
-	-- Launcher menu definitions
 	config.launch_menu = {
 		{
 			label = "PowerShell Core",
@@ -117,41 +95,30 @@ if is_windows then
 			args = { "wsl.exe" },
 		},
 	}
-	-- Set default shell to pwsh
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
 end
 
--- ===== Key Bindings =====
 config.keys = {
-	-- ===== Launching Launcher Menu =====
 	{
 		key = "Enter",
 		mods = "ALT",
 		action = act.ShowLauncher,
 	},
-	-- ===== Application Operations =====
 	{
 		key = "q",
 		mods = "CTRL",
 		action = act.QuitApplication,
 	},
-
-	-- ===== Pane Splitting (Default) =====
-	-- Vertical Split (CTRL + [)
 	{
 		key = "[",
 		mods = "CTRL",
 		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
-	-- Horizontal Split (CTRL + ])
 	{
 		key = "]",
 		mods = "CTRL",
 		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
-
-	-- ===== Pane Splitting (Explicit Ubuntu) =====
-	-- Vertical Split (CTRL + SHIFT + [)
 	{
 		key = "[",
 		mods = "ALT",
@@ -159,7 +126,6 @@ config.keys = {
 			args = { "wsl.exe", "-d", "Ubuntu" },
 		}),
 	},
-	-- Horizontal Split (CTRL + SHIFT + ])
 	{
 		key = "]",
 		mods = "ALT",
@@ -167,9 +133,6 @@ config.keys = {
 			args = { "wsl.exe", "-d", "Ubuntu" },
 		}),
 	},
-
-	-- ===== Pane Navigation =====
-	-- Alt + Arrow keys to move between panes
 	{
 		key = "LeftArrow",
 		mods = "ALT",
@@ -190,9 +153,6 @@ config.keys = {
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Down"),
 	},
-
-	-- ===== Pane Resizing =====
-	-- Ctrl + Alt + Arrow keys to resize panes
 	{
 		key = "LeftArrow",
 		mods = "CTRL|ALT",
@@ -213,25 +173,17 @@ config.keys = {
 		mods = "CTRL|ALT",
 		action = act.AdjustPaneSize({ "Down", 5 }),
 	},
-
-	-- ===== Toggle zoom Pane =====
 	{ key = "z", mods = "ALT", action = act.TogglePaneZoomState },
-
-	-- ===== Close Pane =====
 	{
 		key = "w",
 		mods = "CTRL|SHIFT",
 		action = act.CloseCurrentPane({ confirm = true }),
 	},
-
-	-- ===== Tab Operations =====
-	-- New Tab (Ctrl+Shift+T)
 	{
 		key = "t",
 		mods = "CTRL|SHIFT",
 		action = act.SpawnTab("CurrentPaneDomain"),
 	},
-	-- Switch Tabs (Ctrl+Tab / Ctrl+Shift+Tab)
 	{
 		key = "Tab",
 		mods = "CTRL",
@@ -247,7 +199,6 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
-	-- Select Tab by Number (Ctrl+1-9)
 	{
 		key = "1",
 		mods = "CTRL",
@@ -293,22 +244,16 @@ config.keys = {
 		mods = "CTRL",
 		action = act.ActivateTab(-1),
 	},
-
-	-- ===== Search =====
 	{
 		key = ",",
 		mods = "CTRL",
 		action = act.Search("CurrentSelectionOrEmptyString"),
 	},
-
-	-- ===== Copy Mode =====
 	{
 		key = "c",
 		mods = "CTRL|SHIFT",
 		action = act.ActivateCopyMode,
 	},
-
-	-- ===== Font Size Adjustment =====
 	{
 		key = "=",
 		mods = "CTRL",
@@ -324,8 +269,6 @@ config.keys = {
 		mods = "CTRL",
 		action = act.ResetFontSize,
 	},
-
-	-- ===== Scrolling =====
 	{
 		key = "PageUp",
 		mods = "SHIFT",
@@ -343,15 +286,6 @@ config.keys = {
 	},
 }
 
--- Finally, return the configuration to wezterm:
--- Paste to Neovim (works inside Docker/SSH)
--- table.insert(config.keys, {
---   key = "v",
---   mods = "CTRL|SHIFT",
---   action = wezterm.action.PasteFrom("Clipboard"),
--- })
-
--- SSH domain for Docker Neovim (WezTerm SSH bypasses ConPTY for kitty graphics)
 config.ssh_domains = {
 	{
 		name = "docker-nvim",
