@@ -254,3 +254,5 @@ function dlv {
     uv run python video-downloader.py
     Pop-Location
 }
+
+function imgcat { & wezterm imgcat $args }
