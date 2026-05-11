@@ -37,6 +37,8 @@
 ### Timeout Prevention (60 second limit)
 **All MCP server operations (PowerShell, Neovim, filesystem) have a 60 second timeout.**
 
+**If you are using Neovim MCP, please request permission as the user may already be using it.**
+
 **Break work into small steps:**
 - Avoid long-running commands (recursive searches, large file operations)
 - Limit file reads: use `-TotalCount`, `-Tail`, or `head`/`tail` parameters

@@ -801,3 +801,12 @@ $null = New-Item -Path Function:\global:prompt -Value {
 
 
 
+# lf with config file
+# lf with debug
+function lf {
+    Write-Host "DEBUG: lf function called" -ForegroundColor Yellow
+    Write-Host "DEBUG: args count: $($args.Count)" -ForegroundColor Yellow
+    Write-Host "DEBUG: args: $args" -ForegroundColor Yellow
+    & "C:\Users\shing\go\bin\lf.exe" -config "C:\Users\shing\.config\lf\lfrc" @args
+}
+

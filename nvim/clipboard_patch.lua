@@ -1,18 +1,15 @@
--- Clipboard: OSC52 copy, register fallback paste
--- To paste from host: use WezTerm right-click or Ctrl+Shift+V in insert mode
-local function my_paste(_)
-  return function(_)
-    return vim.split(vim.fn.getreg('"'), '\n')
-  end
-end
+-- Simple Windows clipboard via PowerShell
+vim.opt.clipboard = 'unnamedplus'
+
 vim.g.clipboard = {
-  name = 'OSC 52',
+  name = 'PowerShellClipboard',
   copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    ['+'] = 'powershell.exe -NoProfile -Command Set-Clipboard -Value $input',
+    ['*'] = 'powershell.exe -NoProfile -Command Set-Clipboard -Value $input',
   },
   paste = {
-    ['+'] = my_paste('+'),
-    ['*'] = my_paste('*'),
+    ['+'] = 'powershell.exe -NoProfile -Command Get-Clipboard',
+    ['*'] = 'powershell.exe -NoProfile -Command Get-Clipboard',
   },
+  cache_enabled = 0,
 }
