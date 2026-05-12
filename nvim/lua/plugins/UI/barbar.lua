@@ -41,8 +41,6 @@ require('barbar').setup {
 
 vim.keymap.set('n', 'H', '<cmd>BufferPrevious<cr>')
 vim.keymap.set('n', 'L', '<cmd>BufferNext<cr>')
-vim.keymap.set('n', '<A-h>', '<cmd>BufferMovePrevious<cr>')
-vim.keymap.set('n', '<A-l>', '<cmd>BufferMoveNext<cr>')
 vim.keymap.set('n', '<A-1>', '<cmd>BufferGoto 1<cr>')
 vim.keymap.set('n', '<A-2>', '<cmd>BufferGoto 2<cr>')
 vim.keymap.set('n', '<A-3>', '<cmd>BufferGoto 3<cr>')
