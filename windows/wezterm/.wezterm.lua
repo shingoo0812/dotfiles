@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
+package.path = wezterm.config_dir .. "/?.lua;" .. package.path
 local keymap = require("keymap")
 
 local config = wezterm.config_builder()
