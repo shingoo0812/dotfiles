@@ -12,14 +12,16 @@
 ### Priority Order for Execution
 - MCP: Always attempt operations via PowerShell MCP first (Windows paths only)
 - For Linux paths (/home/...), provide bash or Python commands for user to run in terminal
+- For Windows tools accessing WSL files, use "wslpath -w" to convert the path first.
 
 ### Target-Based Tool Selection
 **Writing to Windows filesystem (C:\Users\...):**
-- ALWAYS use PowerShell `Set-Content` or `Out-File` directly
+- ALWAYS use PowerShell "Set-Content -Encoding UTF8" or "Out-File -Encoding UTF8" directly.
 - For content with complex quotes, write a Python script file first then execute
 
 **Writing to Linux filesystem (/home/...):**
 - Provide short bash commands for user to run in terminal
+- For large files (>500 lines), prioritize "filesystem:edit_file" (diff-style) to prevent timeout instead of a full rewrite.
 - For complex content with quotes, use Python heredoc:
 ```bash
   python3 << 'EOF'
@@ -75,7 +77,8 @@ Get-ChildItem -Recurse -Depth 2 | Select-Object -First 100
 ### Mandatory Format
 **Always use this exact format:**
 ```powershell
-C:\Users\shing\AppData\Local\Programs\Python\Python312\python.exe -u script.py
+
+# Priority: 1. .venv (if exists), 2. Global 3.12, 3. Scoop
 ```
 
 ### Critical Requirements
@@ -109,3 +112,4 @@ Get-Content output.txt
 - Never use `python` directly (PATH not inherited in MCP)
 - Never omit `-u` flag (output will be buffered/lost)
 - Replacing only a portion of a file is prohibited as it can cause a timeout. Either rewrite the entire file at once using Set-Content, or create a temporary file using create-powershell-script before executing the command.
+- Never ignore the "-Encoding UTF8" requirement for PowerShell file operations.
