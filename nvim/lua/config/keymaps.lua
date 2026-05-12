@@ -219,7 +219,3 @@ wk.add {
     mode = { 'x' },
   },
 }
-
--- Comment toggle with Ctrl+/
-vim.keymap.set('n', '<C-_>', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment toggle current line' })
-vim.keymap.set('v', '<C-_>', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment toggle linewise (visual)' })
