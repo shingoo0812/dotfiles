@@ -1,4 +1,4 @@
--- Windows clipboard via PowerShell
+-- Windows clipboard via win32yank (handles CRLF properly)
 vim.opt.clipboard = 'unnamedplus'
 if vim.fn.has('wsl') == 1 then
   vim.g.clipboard = {
@@ -11,17 +11,17 @@ if vim.fn.has('wsl') == 1 then
     cache_enabled = false,
   }
 else
-  -- Windows native: use PowerShell directly
+  -- Windows native: use win32yank for proper CRLF handling
   vim.g.clipboard = {
-    name = 'WindowsPowerShell',
+    name = 'win32yank',
     copy = {
-      ['+'] = { 'powershell.exe', '-NoProfile', '-Command', 'Set-Clipboard', '-Value', '$input' },
-      ['*'] = { 'powershell.exe', '-NoProfile', '-Command', 'Set-Clipboard', '-Value', '$input' },
+      ['+'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-i', '--crlf' },
+      ['*'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-i', '--crlf' },
     },
     paste = {
-      ['+'] = { 'powershell.exe', '-NoProfile', '-Command', 'Get-Clipboard' },
-      ['*'] = { 'powershell.exe', '-NoProfile', '-Command', 'Get-Clipboard' },
+      ['+'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-o', '--lf' },
+      ['*'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-o', '--lf' },
     },
-    cache_enabled = 0,
+    cache_enabled = false,
   }
 end

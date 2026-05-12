@@ -157,7 +157,7 @@ wk.add {
       desc = 'Open Current File Location(Neotree)',
     },
     { '<leader>fv', '<cmd>e ' .. vim.fn.fnamemodify(vim.env.MYVIMRC, ':p:h') .. '<cr>', desc = 'Open Nvim Conf Location' },
-    { '<leader>fw', '<cmd>e ' .. vim.fn.fnamemodify(vim.env.PROFILE, ':p:h') .. '<cr>', desc = 'Open Windows Profile Location' },
+    { '<leader>fw', '<cmd>e C:\\Users\\shing\\AppData\\Local\\dotfiles<cr>', desc = 'Open Dotfiles Location' },
     {
       '<leader>fd',
       function()
