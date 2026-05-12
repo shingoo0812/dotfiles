@@ -37,5 +37,16 @@
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "300000"
+  },
+  "mcpServers": {
+    "neovim": {
+      "command": "node",
+      "args": [
+        "C:/Users/shing/AppData/Roaming/npm/node_modules/mcp-neovim-server/build/index.js"
+      ],
+      "env": {
+        "NVIM_SOCKET_PATH": "\\\\.\\pipe\\nvim"
+      }
+    }
   }
 }
