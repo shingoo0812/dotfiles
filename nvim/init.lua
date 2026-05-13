@@ -122,6 +122,7 @@ vim.pack.add {
   'https://github.com/MagicDuck/grug-far.nvim',
 
   -- Testing
+  'https://github.com/timtro/glslView-nvim',
   'https://github.com/nvim-neotest/neotest',
   'https://github.com/antoinemadec/FixCursorHold.nvim',
   'https://github.com/nvim-neotest/neotest-python',
@@ -230,4 +231,4 @@ load_config_recursive(config_path, 'config.')
 
 -- vim: ts=2 sts=2 sw=2 et
 
-require('clipboard_patch')
+require 'clipboard_patch'

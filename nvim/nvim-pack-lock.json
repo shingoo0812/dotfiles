@@ -98,6 +98,10 @@
       "rev": "bf86d8b79dce808e65fdb6e9269d0b4ed6d2eefc",
       "src": "https://github.com/dnlhc/glance.nvim"
     },
+    "glslView-nvim": {
+      "rev": "2ad41cef51e658a0de1685728a950dd8c13788fd",
+      "src": "https://github.com/timtro/glslView-nvim"
+    },
     "grug-far.nvim": {
       "rev": "21790e59dd0109a92a70cb874dd002af186314f5",
       "src": "https://github.com/MagicDuck/grug-far.nvim"

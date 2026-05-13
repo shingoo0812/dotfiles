@@ -58,21 +58,31 @@ function M.apply(config, act)
 
 	local defs = build_defs(act)
 
-	-- Build InputSelector choices
-	local choices = {}
-	for _, def in ipairs(defs) do
-		table.insert(choices, {
-			id = def.key,
-			label = string.format("%-24s  %s", def.mods .. " + " .. def.key, def.desc),
-		})
-	end
+	local help_action = wezterm.action_callback(function(window, pane)
+		local lines = { "  WezTerm Keybindings", "  " .. string.rep("-", 52), "" }
+		for _, def in ipairs(defs) do
+			table.insert(lines, string.format("  %-28s  %s", def.mods .. " + " .. def.key, def.desc))
+		end
+		table.insert(lines, "")
+		table.insert(lines, "  Press any key to close")
 
-	local help_action = act.InputSelector({
-		title = "Keybindings",
-		choices = choices,
-		fuzzy = true,
-		action = wezterm.action_callback(function() end),
-	})
+		local cmds = {}
+		for _, line in ipairs(lines) do
+			table.insert(cmds, "Write-Host '" .. line:gsub("'", "''") .. "'")
+		end
+		table.insert(cmds, "$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')")
+
+		window:perform_action(
+			act.SplitPane({
+				direction = "Right",
+				size = { Percent = 40 },
+				command = { args = { "pwsh.exe", "-NoLogo", "-Command",
+					table.concat(cmds, "; ")
+				}},
+			}),
+			pane
+		)
+	end)
 
 	-- Build config.keys, substituting the help placeholder
 	local keys = {}
