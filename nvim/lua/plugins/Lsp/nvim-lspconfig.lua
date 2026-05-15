@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd('FileType', {
 require('mason').setup()
 
 local ensure_installed = vim.tbl_keys(servers or {})
-vim.list_extend(ensure_installed, { 'clangd', 'clang-format', 'codelldb', 'pyright', 'csharp_ls', 'ts_ls' })
+vim.list_extend(ensure_installed, { 'clangd', 'clang-format', 'codelldb', 'pyright', 'ts_ls' })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 require('mason-lspconfig').setup {
@@ -284,11 +284,13 @@ vim.lsp.config.pyright = {
   capabilities = capabilities,
   settings = {
     python = {
+      pythonPath = vim.g.python3_host_prog,
       analysis = {
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
         diagnosticMode = 'openFilesOnly',
         typeCheckingMode = 'basic',
+        extraPaths = { 'C:/Users/shingo/miniconda3/Lib/site-packages' },
       },
     },
   },
@@ -303,8 +305,12 @@ vim.lsp.config.pyright = {
       config.settings.python.pythonPath = pyright_venv_cache[root_path]
       return
     end
+    local fallback = vim.g.python3_host_prog or 'python'
     local venv_root = find_venv_root(root_path)
-    if not venv_root then return end
+    if not venv_root then
+      config.settings.python.pythonPath = fallback
+      return
+    end
     local python_path
     if func.functions.utils.detect_os() == 'windows' then
       python_path = venv_root .. '/Scripts/python.exe'
@@ -312,7 +318,7 @@ vim.lsp.config.pyright = {
       python_path = venv_root .. '/bin/python'
     end
     if vim.fn.filereadable(python_path) == 0 then
-      print('pythonExecuteFile not found:', python_path)
+      config.settings.python.pythonPath = fallback
       return
     end
     pyright_venv_cache[root_path] = python_path

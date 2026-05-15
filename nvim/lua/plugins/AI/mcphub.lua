@@ -1,6 +1,6 @@
 local cmd
 if vim.fn.has 'win32' == 1 then
-  cmd = 'C:/Users/shing/AppData/Roaming/npm/mcp-hub.cmd'
+  cmd = 'C:/Users/shingo/AppData/Roaming/npm/mcp-hub.cmd'
 else
   local home = vim.fn.expand '~'
   local npm_bin = home .. '/.npm-global/bin/mcp-hub'

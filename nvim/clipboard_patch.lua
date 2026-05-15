@@ -2,14 +2,14 @@
 vim.opt.clipboard = 'unnamedplus'
 
 vim.g.clipboard = {
-  name = 'PowerShellClipboard',
+  name = 'win32yank',
   copy = {
-    ['+'] = 'powershell.exe -NoProfile -Command Set-Clipboard -Value $input',
-    ['*'] = 'powershell.exe -NoProfile -Command Set-Clipboard -Value $input',
+    ['+'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-i', '--crlf' },
+    ['*'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-i', '--crlf' },
   },
   paste = {
-    ['+'] = 'powershell.exe -NoProfile -Command Get-Clipboard',
-    ['*'] = 'powershell.exe -NoProfile -Command Get-Clipboard',
+    ['+'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-o', '--lf' },
+    ['*'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-o', '--lf' },
   },
-  cache_enabled = 0,
+  cache_enabled = false,
 }

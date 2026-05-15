@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(python -c \"import pynvim; print\\('pynvim ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import jupyter_client; print\\('jupyter_client ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import cairosvg; print\\('cairosvg ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import pnglatex; print\\('pnglatex ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import plotly; print\\('plotly ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import kaleido; print\\('kaleido ok'\\)\" 2>&1)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(python -m pip install pynvim jupyter_client 2>&1)",
+      "PowerShell(python -c \"import sys; print\\(sys.executable\\)\")",
+      "PowerShell(python -m pip install ipykernel 2>&1)",
+      "PowerShell(python -m ipykernel install --user --name python3 --display-name \"Python 3 \\(miniconda\\)\" 2>&1)",
+      "PowerShell(python -m jupyter kernelspec list 2>&1)",
+      "PowerShell(python -m ipykernel install --user --name obsidians --display-name \"obsidians\" 2>&1)",
+      "PowerShell(python -m pip install torch pandas numpy matplotlib 2>&1)"
+    ]
+  }
+}

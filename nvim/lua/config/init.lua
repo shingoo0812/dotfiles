@@ -5,6 +5,7 @@
 -- Set <Space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.python3_host_prog = 'C:/Users/shingo/miniconda3/python.exe'
 
 -- [[Settings for UFO]]
 vim.o.foldenable = true -- Disable folding
@@ -81,17 +82,16 @@ vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 vim.env.PYTHONIOENCODING = 'utf-8'
 
--- Use win32yank for clipboard: --crlf on copy so Windows apps see proper line breaks
 if vim.fn.has 'win32' == 1 then
   vim.g.clipboard = {
     name = 'win32yank',
     copy = {
-      ['+'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-i', '--crlf' },
-      ['*'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-i', '--crlf' },
+      ['+'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-i', '--crlf' },
+      ['*'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-i', '--crlf' },
     },
     paste = {
-      ['+'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-o', '--lf' },
-      ['*'] = { 'C:\\Users\\shing\\scoop\\shims\\win32yank.exe', '-o', '--lf' },
+      ['+'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-o', '--lf' },
+      ['*'] = { 'C:\\Program Files\\Neovim\\bin\\win32yank.exe', '-o', '--lf' },
     },
     cache_enabled = false,
   }

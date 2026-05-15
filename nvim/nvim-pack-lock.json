@@ -297,6 +297,10 @@
       "rev": "3f343962643f63d75ae3bcf65669df2930e94411",
       "src": "https://github.com/eero-lehtinen/oklch-color-picker.nvim"
     },
+    "otter.nvim": {
+      "rev": "a455e68a99d395889ab30a25ac3846a135e93c46",
+      "src": "https://github.com/jmbuhr/otter.nvim"
+    },
     "pantran.nvim": {
       "rev": "b87c3ae48cba4659587fb75abd847e5b7a7c9ca0",
       "src": "https://github.com/potamides/pantran.nvim"

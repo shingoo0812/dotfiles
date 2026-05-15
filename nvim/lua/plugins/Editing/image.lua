@@ -1,3 +1,5 @@
+if vim.fn.has('win32') == 1 then return end
+
 -- image.nvim configuration for displaying images in terminal
 -- Requires: ImageMagick and luarocks magick package
 -- Check if ImageMagick is available

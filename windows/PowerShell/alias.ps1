@@ -43,26 +43,26 @@ function GoUp{
 }
 
 function cdv{
-    cd 'C:\Users\shing\AppData\Local\nvim'
+    cd 'C:\Users\shingo\AppData\Local\nvim'
 }
 
 function cdd{
-    cd 'C:\Users\shing\AppData\Local\dotfiles'
+    cd 'C:\Users\shingo\AppData\Local\dotfiles'
 }
 
 function cdc{
-    cd 'C:\Users\shing\OneDrive\Documents'
+    cd 'C:\Users\shingo\OneDrive\Documents'
 }
 function cdl{
     cd 'F:\Downloads'
 }
-function cdc{
-    cd 'C:\Users\shing\AppData\Roaming\Claude\'
+function cdcl{
+    cd 'C:\Users\shingo\AppData\Roaming\Claude\'
 }
 
-function cdp { Set-Location 'C:\Users\shing\OneDrive\Documents\PowerShell\' }
-function desk { Set-Location 'C:\Users\shing\Desktop' }
-function app { Set-Location 'C:\Users\shing\AppData' }
+function cdp { Set-Location 'C:\Users\shingo\OneDrive\Documents\PowerShell\' }
+function desk { Set-Location 'C:\Users\shingo\Desktop' }
+function app { Set-Location 'C:\Users\shingo\AppData' }
 function cdf { Set-Location 'F:\' }
 function env {Get-ChildItem Env:}
 function wslsh {

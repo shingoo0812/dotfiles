@@ -1,4 +1,5 @@
--- Note: molten-nvim requires ':UpdateRemotePlugins' build step — run manually after install
+vim.cmd.packadd('molten-nvim')
+
 vim.g.molten_image_provider = 'wezterm'
 -- vim.g.molten_image_provider = 'image.nvim'
 vim.g.molten_output_win_max_height = 20

@@ -1,6 +1,7 @@
 using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
+
 if ($host.Name -eq 'ConsoleHost')
 {
     Import-Module PSReadLine
@@ -556,7 +557,7 @@ Set-PSReadLineKeyHandler -Key F1 `
 #
 $global:PSReadLineMarks = @{}
 
-Set-PSReadLineKeyHandler -Key Ctrl+J `
+Set-PSReadLineKeyHandler -Key Ctrl+Shift+J `
                          -BriefDescription MarkDirectory `
                          -LongDescription "Mark the current directory" `
                          -ScriptBlock {
@@ -688,8 +689,11 @@ Set-PSReadLineKeyHandler -Key Alt+a `
     [Microsoft.PowerShell.PSConsoleReadLine]::SelectForwardChar($null, ($nextAst.Extent.EndOffset - $nextAst.Extent.StartOffset) - $endOffsetAdjustment)
 }
 
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
+$psrlVersion = (Get-Module PSReadLine).Version
+if ($psrlVersion -ge [Version]'2.1.0') {
+    Set-PSReadLineOption -PredictionSource History
+    Set-PSReadLineOption -PredictionViewStyle ListView
+}
 Set-PSReadLineOption -EditMode Windows
 
 # This is an example of a macro that you might use to execute a command.
@@ -713,7 +717,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+t `
 }
 
 # エイリアスファイルの読み込み
-$aliasPath = "C:\Users\shing\OneDrive\Documents\PowerShell\alias.ps1"
+$aliasPath = "C:\Users\shingo\AppData\Local\dotfiles\windows\PowerShell\alias.ps1"
 if (Test-Path $aliasPath) {
     try {
         . $aliasPath
@@ -725,50 +729,39 @@ if (Test-Path $aliasPath) {
     Write-Warning "エイリアスファイルが見つかりません: $aliasPath"
 }
 
-$env:PATH += ";C:\Users\shing\AppData\Local\Programs\Microsoft VS Code\bin"
-$env:PATH += ";C:\Users\shing\anaconda3"
-$env:PATH += ";C:\Users\shing\anaconda3\Scripts"
-$env:PATH += ";C:\Users\shing\anaconda3\Library\bin"
+$env:PATH += ";C:\Users\shingo\AppData\Local\Programs\Microsoft VS Code\bin"
+$env:PATH += ";C:\Users\shingo\miniconda3"
+$env:PATH += ";C:\Users\shingo\miniconda3\Scripts"
+$env:PATH += ";C:\Users\shingo\miniconda3\Library\bin"
 $env:PATH += ";C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\Hostx64\x64"
 
-& "C:\Users\shing\anaconda3\shell\condabin\conda-hook.ps1"
-Remove-Item Alias:conda -ErrorAction Ignore
-# Conda を最後にロード
-Import-Module "C:\Users\shing\anaconda3\shell\condabin\Conda.psm1" -Force
+# Conda の初期化（conda init が profile.ps1 に書き込む形式と同じ）
+if (Test-Path "C:\Users\shingo\miniconda3\Scripts\conda.exe") {
+    (& "C:\Users\shingo\miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Where-Object { $_ } | Invoke-Expression
+}
 
 
 # VS 2022 BuildTools の VC 環境を自動読み込み
-& "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-
-#####################oh-my-posh###############################
-# oh-my-posh の設定（修正版）
-# condaの後に設定する必要があります
-$ohMyPoshPath = "C:\Users\shing\AppData\Local\Programs\oh-my-posh\bin"
-$ompExe = "$ohMyPoshPath\oh-my-posh.exe"
-
-# PATHに追加（セッション用）
-if (-not ($env:PATH -split ';' -contains $ohMyPoshPath)) {
-    $env:PATH += ";$ohMyPoshPath"
+$vcVarsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+if (Test-Path $vcVarsPath) {
+    $tempFile = [IO.Path]::GetTempFileName()
+    cmd /c "`"$vcVarsPath`" > nul 2>&1 && set > `"$tempFile`""
+    Get-Content $tempFile | ForEach-Object {
+        if ($_ -match '^([^=]+)=(.*)$') {
+            [System.Environment]::SetEnvironmentVariable($Matches[1], $Matches[2], 'Process')
+        }
+    }
+    Remove-Item $tempFile -ErrorAction SilentlyContinue
 }
 
-if (Test-Path $ompExe) {
-    try {
-        # テーマファイルの確認
-        $themeConfig = "$ohMyPoshPath\themes\MyOhMyPoshTheme.omp.json"
-        if (Test-Path $themeConfig) {
-            # カスタムテーマで実行
-            & $ompExe init pwsh --config $themeConfig | Invoke-Expression
-            Write-Host "oh-my-posh カスタムテーマが読み込まれました" -ForegroundColor Green
-        } else {
-            # デフォルトテーマで実行
-            & $ompExe init pwsh | Invoke-Expression
-            Write-Host "oh-my-posh デフォルトテーマが読み込まれました" -ForegroundColor Green
-        }
-    } catch {
-        Write-Warning "oh-my-posh の初期化でエラー: $($_.Exception.Message)"
+#####################oh-my-posh###############################
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    $themeConfig = "$env:USERPROFILE\.config\oh-my-posh\MyOhMyPoshTheme.omp.json"
+    if (Test-Path $themeConfig) {
+        oh-my-posh init pwsh --config $themeConfig | Invoke-Expression
+    } else {
+        oh-my-posh init pwsh | Invoke-Expression
     }
-} else {
-    Write-Warning "oh-my-posh.exe が見つかりません: $ompExe"
 }
 
 # distutils 用の環境変数を設定
@@ -802,11 +795,9 @@ $null = New-Item -Path Function:\global:prompt -Value {
 
 
 # lf with config file
-# lf with debug
 function lf {
-    Write-Host "DEBUG: lf function called" -ForegroundColor Yellow
-    Write-Host "DEBUG: args count: $($args.Count)" -ForegroundColor Yellow
-    Write-Host "DEBUG: args: $args" -ForegroundColor Yellow
-    & "C:\Users\shing\go\bin\lf.exe" -config "C:\Users\shing\.config\lf\lfrc" @args
+    & "C:\Users\shingo\AppData\Local\Microsoft\WinGet\Packages\gokcehan.lf_Microsoft.Winget.Source_8wekyb3d8bbwe\lf.exe" -config "C:\Users\shingo\.config\lf\lfrc" @args
 }
+
+
 
