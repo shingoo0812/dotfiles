@@ -108,7 +108,20 @@
         "-y",
         "superpowers-mcp"
       ]
+    },
+    "ollama": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": [
+        "C:/Users/shingo/AppData/Local/dotfiles/ollama-mcp/ollama_server.py"
+      ]
+    },
+    "rag": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": [
+        "C:/Users/shingo/AppData/Local/dotfiles/rag/rag_server.py"
+      ]
     }
+
   },
   "preferences": {
     "coworkScheduledTasksEnabled": true,

@@ -15,7 +15,22 @@
       "PowerShell(python -m ipykernel install --user --name python3 --display-name \"Python 3 \\(miniconda\\)\" 2>&1)",
       "PowerShell(python -m jupyter kernelspec list 2>&1)",
       "PowerShell(python -m ipykernel install --user --name obsidians --display-name \"obsidians\" 2>&1)",
-      "PowerShell(python -m pip install torch pandas numpy matplotlib 2>&1)"
+      "PowerShell(python -m pip install torch pandas numpy matplotlib 2>&1)",
+      "Bash(pip install *)",
+      "Bash(where jupytext *)",
+      "PowerShell(Get-ScheduledTaskInfo *)",
+      "PowerShell(Get-ScheduledTask *)",
+      "Bash('C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe' -u -c ' *)",
+      "PowerShell(Get-Item *)",
+      "PowerShell(cmd /c dir \"$env:APPDATA\\\\Claude\\\\claude_desktop_config.json\" 2>&1)",
+      "Read(//c/Users/shingo/.claude/**)",
+      "Read(//c/Users/shingo/.claude/cache/**)",
+      "PowerShell(claude mcp *)",
+      "mcp__rag__rag_query",
+      "mcp__rag__rag_stats",
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import json,pathlib; json.loads\\(pathlib.Path\\(r'C:\\\\Users\\\\shingo\\\\AppData\\\\Roaming\\\\Claude\\\\claude_desktop_config.json'\\).read_text\\(encoding='utf-8'\\)\\); print\\('valid'\\)\" 2>&1)",
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import json,pathlib; d=json.loads\\(pathlib.Path\\(r'C:\\\\Users\\\\shingo\\\\AppData\\\\Roaming\\\\Claude\\\\claude_desktop_config.json'\\).read_text\\(encoding='utf-8'\\)\\); print\\(list\\(d.get\\('mcpServers',{}\\).keys\\(\\)\\)\\)\" 2>&1)",
+      "Bash(cmd.exe /c \"dir F:\\\\Work /AD /B 2>&1\")"
     ]
   }
 }

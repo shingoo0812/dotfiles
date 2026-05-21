@@ -735,23 +735,33 @@ $env:PATH += ";C:\Users\shingo\miniconda3\Scripts"
 $env:PATH += ";C:\Users\shingo\miniconda3\Library\bin"
 $env:PATH += ";C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\Hostx64\x64"
 
-# Conda の初期化（conda init が profile.ps1 に書き込む形式と同じ）
-if (Test-Path "C:\Users\shingo\miniconda3\Scripts\conda.exe") {
-    (& "C:\Users\shingo\miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Where-Object { $_ } | Invoke-Expression
+# Conda: call `conda-init` in your session when you need conda commands
+function conda-init {
+    $condaExe = "C:\Users\shingo\miniconda3\Scripts\conda.exe"
+    if (Test-Path $condaExe) {
+        (& $condaExe "shell.powershell" "hook") | Out-String | Where-Object { $_ } | Invoke-Expression
+        Write-Host "conda initialized" -ForegroundColor Green
+    } else {
+        Write-Warning "conda.exe not found at $condaExe"
+    }
 }
 
-
-# VS 2022 BuildTools の VC 環境を自動読み込み
-$vcVarsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
-if (Test-Path $vcVarsPath) {
-    $tempFile = [IO.Path]::GetTempFileName()
-    cmd /c "`"$vcVarsPath`" > nul 2>&1 && set > `"$tempFile`""
-    Get-Content $tempFile | ForEach-Object {
-        if ($_ -match '^([^=]+)=(.*)$') {
-            [System.Environment]::SetEnvironmentVariable($Matches[1], $Matches[2], 'Process')
+# VS 2022 BuildTools VC env: call `init-vcvars` before compiling C++ projects
+function init-vcvars {
+    $vcVarsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+    if (Test-Path $vcVarsPath) {
+        $tempFile = [IO.Path]::GetTempFileName()
+        cmd /c "`"$vcVarsPath`" > nul 2>&1 && set > `"$tempFile`""
+        Get-Content $tempFile | ForEach-Object {
+            if ($_ -match '^([^=]+)=(.*)$') {
+                [System.Environment]::SetEnvironmentVariable($Matches[1], $Matches[2], 'Process')
+            }
         }
+        Remove-Item $tempFile -ErrorAction SilentlyContinue
+        Write-Host "MSVC environment loaded" -ForegroundColor Green
+    } else {
+        Write-Warning "vcvars64.bat not found at $vcVarsPath"
     }
-    Remove-Item $tempFile -ErrorAction SilentlyContinue
 }
 
 #####################oh-my-posh###############################
@@ -801,3 +811,13 @@ function lf {
 
 
 
+
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}

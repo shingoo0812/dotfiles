@@ -39,6 +39,12 @@
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "300000"
   },
+  "permissions": {
+    "allow": [
+      "mcp__rag__rag_query",
+      "mcp__rag__rag_stats"
+    ]
+  },
   "mcpServers": {
     "neovim": {
       "command": "node",

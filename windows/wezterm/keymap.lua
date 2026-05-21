@@ -52,7 +52,12 @@ function M.apply(config, act)
 		{
 			event = { Down = { streak = 1, button = "Right" } },
 			mods = "NONE",
-			action = act.PasteFrom("Clipboard"),
+			action = act.Nop,
+		},
+		{
+			event = { Up = { streak = 1, button = "Right" } },
+			mods = "NONE",
+			action = act.Nop,
 		},
 	}
 

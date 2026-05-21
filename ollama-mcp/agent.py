@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI agent: Ollama LLM + MCP tools (filesystem + shell).
+"""CLI agent: Ollama LLM + MCP filesystem tools.
 
 Usage:
     python agent.py                    # uses llama3.2
@@ -17,7 +17,8 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
 
-def to_ollama_tool(tool) -> dict:
+def _mcp_tool_to_ollama(tool) -> dict:
+    """Convert an MCP tool descriptor to the format Ollama's chat API expects."""
     return {
         "type": "function",
         "function": {
@@ -28,8 +29,64 @@ def to_ollama_tool(tool) -> dict:
     }
 
 
+def _build_assistant_message(msg) -> dict:
+    """Build an assistant history entry from an Ollama response message."""
+    entry: dict = {"role": "assistant", "content": msg.content or ""}
+    if msg.tool_calls:
+        entry["tool_calls"] = [
+            {"function": {"name": tc.function.name, "arguments": tc.function.arguments}}
+            for tc in msg.tool_calls
+        ]
+    return entry
+
+
+async def _execute_tool_calls(tool_calls, tool_to_session: dict) -> list[dict]:
+    """Execute each tool call via MCP and return tool-result messages."""
+    results = []
+    for tc in tool_calls:
+        name = tc.function.name
+        args = tc.function.arguments or {}
+        print(f"  [tool] {name}({json.dumps(args, ensure_ascii=False)})")
+
+        session = tool_to_session.get(name)
+        if session:
+            result = await session.call_tool(name, args)
+            content = "\n".join(c.text for c in result.content if hasattr(c, "text"))
+        else:
+            content = f"Error: unknown tool '{name}'"
+
+        results.append({"role": "tool", "content": content})
+    return results
+
+
+async def _agentic_turn(
+    model: str,
+    messages: list[dict],
+    ollama_tools: list[dict],
+    tool_to_session: dict,
+) -> None:
+    """Run one user turn, looping until the model stops requesting tool calls."""
+    while True:
+        response = await asyncio.to_thread(
+            ollama.chat,
+            model=model,
+            messages=messages,
+            tools=ollama_tools,
+        )
+        msg = response.message
+        messages.append(_build_assistant_message(msg))
+
+        if not msg.tool_calls:
+            print(f"\nAssistant: {msg.content}\n")
+            break
+
+        # Feed tool results back so the model can continue reasoning
+        tool_results = await _execute_tool_calls(msg.tool_calls, tool_to_session)
+        messages.extend(tool_results)
+
+
 async def run(model: str) -> None:
-    # sys.executable picks the correct Python automatically (Windows or WSL)
+    # Launch filesystem_server.py as a child process; communicate via MCP over stdio
     server_params = StdioServerParameters(
         command=sys.executable,
         args=["filesystem_server.py"],
@@ -42,7 +99,7 @@ async def run(model: str) -> None:
 
         tools_result = await session.list_tools()
         tool_to_session = {t.name: session for t in tools_result.tools}
-        ollama_tools = [to_ollama_tool(t) for t in tools_result.tools]
+        ollama_tools = [_mcp_tool_to_ollama(t) for t in tools_result.tools]
 
         print(f"Ollama MCP Agent  (model: {model})")
         print(f"Tools: {[t['function']['name'] for t in ollama_tools]}")
@@ -62,46 +119,7 @@ async def run(model: str) -> None:
                 break
 
             messages.append({"role": "user", "content": user_input})
-
-            # Agentic loop — repeat until the model stops calling tools
-            while True:
-                response = await asyncio.to_thread(
-                    ollama.chat,
-                    model=model,
-                    messages=messages,
-                    tools=ollama_tools,
-                )
-                msg = response.message
-
-                # Record assistant turn
-                assistant_msg: dict = {"role": "assistant", "content": msg.content or ""}
-                if msg.tool_calls:
-                    assistant_msg["tool_calls"] = [
-                        {"function": {"name": tc.function.name, "arguments": tc.function.arguments}}
-                        for tc in msg.tool_calls
-                    ]
-                messages.append(assistant_msg)
-
-                if not msg.tool_calls:
-                    print(f"\nAssistant: {msg.content}\n")
-                    break
-
-                # Execute each tool call via MCP
-                for tc in msg.tool_calls:
-                    name = tc.function.name
-                    args = tc.function.arguments or {}
-                    print(f"  [tool] {name}({json.dumps(args, ensure_ascii=False)})")
-
-                    mcp_session = tool_to_session.get(name)
-                    if mcp_session:
-                        result = await mcp_session.call_tool(name, args)
-                        content = "\n".join(
-                            c.text for c in result.content if hasattr(c, "text")
-                        )
-                    else:
-                        content = f"Error: unknown tool '{name}'"
-
-                    messages.append({"role": "tool", "content": content})
+            await _agentic_turn(model, messages, ollama_tools, tool_to_session)
 
 
 def main() -> None:

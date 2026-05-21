@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""MCP server — filesystem + shell tools."""
+"""MCP server — filesystem + shell tools.
 
-import asyncio
+Launched automatically as a subprocess by agent.py.
+Not intended to be run directly.
+"""
+
 import subprocess
-import sys
 from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
@@ -19,7 +21,7 @@ def read_file(path: str) -> str:
 
 @mcp.tool()
 def write_file(path: str, content: str) -> str:
-    """Write (or overwrite) a file with the given content."""
+    """Write (or overwrite) a file with the given content. Creates parent directories if needed."""
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(content, encoding="utf-8")
@@ -28,8 +30,9 @@ def write_file(path: str, content: str) -> str:
 
 @mcp.tool()
 def list_directory(path: str = ".") -> str:
-    """List files and subdirectories at the given path."""
+    """List files and subdirectories at the given path. Directories are shown first."""
     p = Path(path)
+    # Sort key: dirs before files (is_file() → False < True), then alphabetically
     entries = sorted(p.iterdir(), key=lambda e: (e.is_file(), e.name))
     return "\n".join(
         f"{'[dir] ' if e.is_dir() else '[file]'} {e.name}" for e in entries
@@ -38,8 +41,10 @@ def list_directory(path: str = ".") -> str:
 
 @mcp.tool()
 def run_shell(command: str, cwd: str = ".") -> str:
-    """Run a shell command and return its stdout + stderr.
-    Use with care — commands execute on the local machine.
+    """Run a shell command and return combined stdout + stderr.
+
+    Caution: executes directly on the local machine.
+    Hard-coded 30 s timeout prevents runaway commands from blocking the agent loop.
     """
     result = subprocess.run(
         command,
