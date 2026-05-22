@@ -1,0 +1,41 @@
+# WinGet packages
+# Install: winget install --id <ID> --exact
+# Find IDs: winget search <name>
+# Managed by: windows/install/install-packages.ps1
+
+# --- Development ---
+Git.Git
+Neovim.Neovim
+Microsoft.VisualStudioCode
+Microsoft.VisualStudio.Community
+OpenJS.NodeJS.LTS
+Rustlang.Rustup
+Anaconda.Miniconda3
+
+# --- Terminal & Shell ---
+wez.wezterm
+Microsoft.PowerShell
+Microsoft.WindowsTerminal
+JanDeDobbeleer.OhMyPosh
+
+# --- CLI Tools ---
+BurntSushi.ripgrep.MSVC
+junegunn.fzf
+gokcehan.lf
+JesseDuffield.lazygit
+Ollama.Ollama
+
+# --- 3D / Creative ---
+VictorIX.BlenderLauncher
+
+# --- Utilities ---
+CrystalDewWorld.CrystalDiskInfo
+Logitech.OptionsPlus
+
+# --- Browsers ---
+Google.Chrome.EXE
+
+# --- Gaming ---
+Valve.Steam
+EpicGames.EpicGamesLauncher
+NexusMods.Vortex

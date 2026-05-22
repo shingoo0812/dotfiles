@@ -1,0 +1,6 @@
+# Chocolatey packages — https://chocolatey.org
+# Install: choco install <name>
+# Managed by: windows/install/install-packages.ps1
+#
+# Chocolatey is installed but currently unused for user packages.
+# Add packages here as needed.

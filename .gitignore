@@ -19,6 +19,7 @@ linux/lazygit/state.yml
 !/linux/tmux/
 !/linux/zsh/
 !/linux/bash/
+!/linux/install/
 windows/PowerShell/Modules
 
 # Global gitignore

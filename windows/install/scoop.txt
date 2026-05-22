@@ -1,0 +1,7 @@
+# Scoop packages — https://scoop.sh
+# Install: scoop install <name>
+# Managed by: windows/install/install-packages.ps1
+
+# Bootstrap utilities
+cacert
+wget

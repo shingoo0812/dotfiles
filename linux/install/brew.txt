@@ -1,0 +1,6 @@
+# Homebrew packages — https://brew.sh
+# Managed by: linux/install/install-packages.sh
+# Only runs if `brew` is in PATH.
+
+# fd
+# direnv
