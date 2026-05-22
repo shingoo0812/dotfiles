@@ -75,7 +75,7 @@ Homebrew packages are skipped if `brew` is not in PATH.
 | Directory | Purpose |
 |---|---|
 | `linux/` | Linux configs deployed via `links.prop` (zsh, tmux, bash, xfce4, lazygit, etc.) |
-| `linux/install/` | Linux package lists (`apt.txt`, `brew.txt`) and `install-packages.sh` |
+| `linux/install/` | Linux package lists (`apt.txt`, `brew.txt`), `install-packages.sh`, and `create_ssh.sh` |
 | `windows/Claude/` | Claude Code settings, CLAUDE.md, and Claude Desktop config |
 | `windows/PowerShell/` | PowerShell profile and aliases |
 | `windows/wezterm/` | WezTerm terminal config (split into main + keymap) |
@@ -83,7 +83,7 @@ Homebrew packages are skipped if `brew` is not in PATH.
 | `nvim/` | Neovim config (git submodule: shingoo0812/kickstart.nvim). Plugin list with descriptions: `nvim/plugins.md` |
 | `ollama-mcp/` | Python MCP server exposing local Ollama models as tools |
 | `rag/` | Personal RAG system: ChromaDB + Ollama embeddings + Claude API, served via MCP (`rag_query` tool) and CLI |
-| `install/` | Linux symlink bootstrap (`bootstrap.sh`) |
+| `install/` | Linux symlink bootstrap (`bootstrap.sh`) — run `bash install/bootstrap.sh` to deploy symlinks |
 | `Dockerfile/` | Docker compose configs (DokuWiki) |
 
 ## Submodules
