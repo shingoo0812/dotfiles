@@ -1,0 +1,2 @@
+$DOTFILES\windows\wezterm\.wezterm.lua=$HOME\.wezterm.lua
+$DOTFILES\windows\wezterm\keymap.lua=$HOME\keymap.lua
