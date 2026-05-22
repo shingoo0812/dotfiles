@@ -1,6 +1,18 @@
 {
   "autoUpdatesChannel": "latest",
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -NonInteractive -Command \"$d=[Console]::In.ReadToEnd()|ConvertFrom-Json;$c=$d.tool_input.command;if($c-match '(?i)(scoop|winget|choco)\\s+install|(apt(-get)?|brew)\\s+install'){@{hookSpecificOutput=@{hookEventName='PostToolUse';additionalContext='Package install detected. Add it to the dotfiles package list: windows/install/scoop.txt, winget.txt, or choco.txt (Windows) / linux/install/apt.txt or brew.txt (Linux).'}}|ConvertTo-Json -Compress}\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "",
