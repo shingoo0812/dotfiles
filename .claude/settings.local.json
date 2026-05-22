@@ -30,7 +30,11 @@
       "mcp__rag__rag_stats",
       "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import json,pathlib; json.loads\\(pathlib.Path\\(r'C:\\\\Users\\\\shingo\\\\AppData\\\\Roaming\\\\Claude\\\\claude_desktop_config.json'\\).read_text\\(encoding='utf-8'\\)\\); print\\('valid'\\)\" 2>&1)",
       "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import json,pathlib; d=json.loads\\(pathlib.Path\\(r'C:\\\\Users\\\\shingo\\\\AppData\\\\Roaming\\\\Claude\\\\claude_desktop_config.json'\\).read_text\\(encoding='utf-8'\\)\\); print\\(list\\(d.get\\('mcpServers',{}\\).keys\\(\\)\\)\\)\" 2>&1)",
-      "Bash(cmd.exe /c \"dir F:\\\\Work /AD /B 2>&1\")"
+      "Bash(cmd.exe /c \"dir F:\\\\Work /AD /B 2>&1\")",
+      "PowerShell(scoop list *)",
+      "Bash(Get-ChildItem *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
