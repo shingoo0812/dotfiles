@@ -51,7 +51,7 @@ function cdd{
 }
 
 function cdc{
-    cd 'C:\Users\shingo\OneDrive\Documents'
+    cd 'C:\Users\shingo\Documents'
 }
 function cdl{
     cd 'F:\Downloads'
