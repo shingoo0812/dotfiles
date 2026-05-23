@@ -2,14 +2,18 @@ from pathlib import Path
 
 # --- Watch directories (whitelist) ---
 # Add directories here to include them in the index.
-DOTFILES_DIR = r"C:\Users\shingo\AppData\Local\dotfiles"
-HOUDINI_DIR  = r"C:\Users\shingo\Documents\houdini21.0"
+DOTFILES_DIR   = r"C:\Users\shingo\AppData\Local\dotfiles"
+HOUDINI_DIR    = r"C:\Users\shingo\Documents\houdini21.0"
+NERFSTUDIO_DIR = r"G:\nerfstudio"
+BRUSH_APP_DIR  = r"G:\brush-app-x86_64-pc-windows-msvc"
 # OBSIDIAN_DIR = r"F:\Documents\ObsidianVault"
 # WORK_DIR     = r"F:\Work"
 
 WATCH_DIRS = [
     DOTFILES_DIR,
     HOUDINI_DIR,
+    NERFSTUDIO_DIR,
+    BRUSH_APP_DIR,
 ]
 
 RAG_DIR          = str(Path(__file__).parent)
