@@ -101,6 +101,7 @@ Personal search system combining ChromaDB (local vector DB) + Ollama embeddings 
 
 Quick reference:
 - **Build/update index**: `python rag/watcher.py` (full scan + live watch)
+- **Auto-start**: registered as Windows Task Scheduler job `DotfilesRAGWatcher` (triggers on logon); `LastTaskResult=267009` means it is still running (normal)
 - **Interactive CLI**: `python rag/query_api.py` or `rag/query.bat`
 - **MCP tools**: `rag_query(question)` and `rag_stats()` — already registered in `claude_desktop_config.json`
 

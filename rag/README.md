@@ -83,6 +83,37 @@ Registered as `"rag"` in `claude_desktop_config.json`. Exposes two tools:
 
 ---
 
+## Auto-start (Windows Task Scheduler)
+
+`watcher.py` is registered as a Task Scheduler job named **`DotfilesRAGWatcher`** that launches automatically on user logon.
+
+| Field | Value |
+|---|---|
+| Task name | `DotfilesRAGWatcher` |
+| Trigger | On logon (`shingo`) |
+| Executable | `C:\Users\shingo\miniconda3\python.exe` |
+| Arguments | `C:\Users\shingo\AppData\Local\dotfiles\rag\watcher.py` |
+| Working dir | `C:\Users\shingo\AppData\Local\dotfiles\rag` |
+
+**Check status:**
+```powershell
+Get-ScheduledTask -TaskName DotfilesRAGWatcher | Get-ScheduledTaskInfo
+```
+
+A `LastTaskResult` of `267009` (0x41301) means the task is **currently running** — this is normal.
+
+**Re-register if lost** (run PowerShell as Administrator):
+```powershell
+$action = New-ScheduledTaskAction `
+    -Execute 'C:\Users\shingo\miniconda3\python.exe' `
+    -Argument 'C:\Users\shingo\AppData\Local\dotfiles\rag\watcher.py' `
+    -WorkingDirectory 'C:\Users\shingo\AppData\Local\dotfiles\rag'
+$trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+Register-ScheduledTask -TaskName 'DotfilesRAGWatcher' -Action $action -Trigger $trigger -RunLevel Highest -Force
+```
+
+---
+
 ## Configuration (`config.py`)
 
 ### Adding a watch directory
