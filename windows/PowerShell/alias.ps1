@@ -95,12 +95,11 @@ function grep {
 }
 
 function f {
-    # fzfで選択 + batでプレビュー
-    $file = fzf --preview "bat --style=numbers --color=always {}"
-    
+    $file = fzf --preview "bat --style=numbers --color=always --line-range :500 {}" `
+                --preview-window=right:60%
+
     if ($file) {
-        # nvimで開く
-        nvim $file
+        nvim "$($file.Trim())"
     }
 }
 
