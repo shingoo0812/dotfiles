@@ -21,12 +21,17 @@ JanDeDobbeleer.OhMyPosh
 # --- CLI Tools ---
 BurntSushi.ripgrep.MSVC
 junegunn.fzf
+sharkdp.bat
 gokcehan.lf
 JesseDuffield.lazygit
 Ollama.Ollama
+Cloudflare.cloudflared
 
 # --- 3D / Creative ---
 VictorIX.BlenderLauncher
+
+# --- Communication ---
+Discord.Discord
 
 # --- Utilities ---
 CrystalDewWorld.CrystalDiskInfo
