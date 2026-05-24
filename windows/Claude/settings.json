@@ -3,11 +3,11 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell",
         "hooks": [
           {
             "type": "command",
-            "command": "pwsh -NoProfile -NonInteractive -Command \"$d=[Console]::In.ReadToEnd()|ConvertFrom-Json;$c=$d.tool_input.command;if($c-match '(?i)(scoop|winget|choco)\\s+install|(apt(-get)?|brew)\\s+install'){@{hookSpecificOutput=@{hookEventName='PostToolUse';additionalContext='Package install detected. Add it to the dotfiles package list: windows/install/scoop.txt, winget.txt, or choco.txt (Windows) / linux/install/apt.txt or brew.txt (Linux).'}}|ConvertTo-Json -Compress}\"",
+            "command": "powershell.exe -NonInteractive -File \"C:\\Users\\shingo\\.claude\\hooks\\update-package-lists.ps1\"",
             "timeout": 10
           }
         ]

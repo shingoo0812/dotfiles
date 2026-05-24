@@ -11,6 +11,7 @@ Microsoft.VisualStudio.Community
 OpenJS.NodeJS.LTS
 Rustlang.Rustup
 Anaconda.Miniconda3
+Microsoft.WSL
 
 # --- Terminal & Shell ---
 wez.wezterm

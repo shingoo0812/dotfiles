@@ -114,7 +114,33 @@ sys.stderr.reconfigure(line_buffering=True)
 
 ---
 
-## 4. Ollama Integration
+## 4. Package List Maintenance
+
+A PostToolUse hook auto-updates list files when packages are installed, but always verify it ran for non-standard invocations.
+
+### Dotfiles lists (always update — files always exist)
+
+| Manager | List file |
+|---|---|
+| `scoop install` | `dotfiles/windows/install/scoop.txt` |
+| `winget install` | `dotfiles/windows/install/winget.txt` |
+| `choco install` | `dotfiles/windows/install/choco.txt` |
+| `apt install` | `dotfiles/linux/install/apt.txt` |
+| `brew install` | `dotfiles/linux/install/brew.txt` |
+
+### Project-local lists (create if missing, then update)
+
+| Manager | List file |
+|---|---|
+| `pip install` | `requirements.txt` |
+| `conda install` | `conda-packages.txt` |
+| `scoop install` | `scoop.txt` |
+
+One package per line. No version pins unless a specific version is required.
+
+---
+
+## 5. Ollama Integration
 
 Claude is the **supervisor**; Ollama is the **executor**.
 Claude plans, judges, and synthesizes. Ollama handles mechanical, high-volume, or privacy-sensitive subtasks.

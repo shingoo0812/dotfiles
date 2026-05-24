@@ -5,3 +5,9 @@
 # Bootstrap utilities
 cacert
 wget
+
+# Compression
+7zip
+
+# Media
+ffmpeg
