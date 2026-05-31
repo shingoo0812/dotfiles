@@ -1,5 +1,5 @@
 require('gen').setup {
-  model = 'qwen2.5-coder:7b',
+  model = 'qwen2.5-coder:latest',
   host = 'localhost',
   port = '11434',
   display_mode = 'float',

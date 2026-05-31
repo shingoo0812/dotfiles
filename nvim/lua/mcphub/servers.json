@@ -1,1 +1,8 @@
-{"mcpServers":{}}
+{
+  "mcpServers": {
+    "ollama": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": ["C:/Users/shingo/AppData/Local/dotfiles/ollama-mcp/ollama_server.py"]
+    }
+  }
+}
