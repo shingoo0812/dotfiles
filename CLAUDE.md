@@ -126,7 +126,10 @@ python agent.py --model qwen2.5
 ## Claude Code Configuration
 
 `windows/Claude/settings.json` configures:
-- **Hooks**: Windows toast notifications via `BurntToast` on task completion and when awaiting input
+- **Hooks**:
+  - Windows toast notifications via `BurntToast` on task completion and when awaiting input
+  - Auto-deletes temp files after `Write` — matches paths under `$env:TEMP`/`$env:TMP`, `*.tmp`/`*.temp` extensions, and `tmp_*`/`temp_*` filenames (script: `~/.claude/hooks/cleanup-temp-files.ps1`)
+  - Package list auto-update after `Bash`/`PowerShell` installs (script: `~/.claude/hooks/update-package-lists.ps1`)
 - **Status line**: `npx -y ccstatusline@latest` refreshed every 10 seconds
 - **MCP**: neovim server (requires nvim running with `--listen \\.\pipe\nvim`)
 
