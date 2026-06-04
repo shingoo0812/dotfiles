@@ -11,6 +11,16 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NonInteractive -File \"C:\\Users\\shingo\\.claude\\hooks\\cleanup-temp-files.ps1\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Notification": [
