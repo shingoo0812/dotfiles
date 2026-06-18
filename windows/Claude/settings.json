@@ -29,8 +29,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pwsh -ExecutionPolicy RemoteSigned -Command \"Import-Module BurntToast; New-BurntToastNotification -Text 'Claude Code', 'Claudeが入力を待っています' -Sound Default\"",
-            "timeout": 8
+            "command": "pwsh -ExecutionPolicy RemoteSigned -File \"C:\\Users\\shingo\\.claude\\hooks\\notify.ps1\"",
+            "timeout": 20
           }
         ]
       }
@@ -41,8 +41,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pwsh -ExecutionPolicy RemoteSigned -Command \"Import-Module BurntToast; New-BurntToastNotification -Text 'Claude Code', 'タスクが完了しました' -Sound Default\"",
-            "timeout": 8
+            "command": "pwsh -ExecutionPolicy RemoteSigned -File \"C:\\Users\\shingo\\.claude\\hooks\\notify.ps1\" -Message 'タスクが完了しました'",
+            "timeout": 20
           }
         ]
       }
@@ -64,10 +64,31 @@
   "permissions": {
     "allow": [
       "mcp__rag__rag_query",
-      "mcp__rag__rag_stats"
+      "mcp__rag__rag_stats",
+      "mcp__comfyui__comfyui_stats",
+      "mcp__comfyui__comfyui_queue",
+      "mcp__comfyui__comfyui_search_nodes",
+      "mcp__comfyui__comfyui_node_info",
+      "mcp__comfyui__comfyui_list_workflows",
+      "mcp__comfyui__comfyui_load_workflow",
+      "mcp__comfyui__comfyui_save_workflow",
+      "mcp__comfyui__comfyui_submit_workflow",
+      "mcp__comfyui__comfyui_get_history",
+      "mcp__comfyui__comfyui_get_outputs",
+      "mcp__comfyui__comfyui_get_log",
+      "mcp__comfyui__comfyui_get_errors",
+      "mcp__comfyui__comfyui_interrupt",
+      "mcp__comfyui__comfyui_free_memory"
     ]
   },
   "mcpServers": {
+    "blender": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": [
+        "-u",
+        "C:/Users/shingo/AppData/Local/dotfiles/blender-mcp/blender_mcp_bridge.py"
+      ]
+    },
     "neovim": {
       "command": "node",
       "args": [
