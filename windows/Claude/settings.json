@@ -1,6 +1,18 @@
 {
   "autoUpdatesChannel": "latest",
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"C:\\Users\\shingo\\.claude\\hooks\\ollama-triage-prompt.ps1\"",
+            "timeout": 35
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Bash|PowerShell",
