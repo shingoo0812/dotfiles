@@ -7,6 +7,7 @@ HOUDINI_DIR    = r"C:\Users\shingo\Documents\houdini21.0"
 NERFSTUDIO_DIR = r"G:\nerfstudio"
 BRUSH_APP_DIR  = r"G:\brush-app-x86_64-pc-windows-msvc"
 ISAACLAB_DIR   = r"C:\IsaacLab"
+ACE_DIR        = r"D:\Ace"
 # OBSIDIAN_DIR = r"F:\Documents\ObsidianVault"
 # WORK_DIR     = r"F:\Work"
 
@@ -16,6 +17,7 @@ WATCH_DIRS = [
     NERFSTUDIO_DIR,
     BRUSH_APP_DIR,
     ISAACLAB_DIR,
+    ACE_DIR,
 ]
 
 RAG_DIR          = str(Path(__file__).parent)

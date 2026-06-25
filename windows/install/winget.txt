@@ -45,3 +45,4 @@ Google.Chrome.EXE
 Valve.Steam
 EpicGames.EpicGamesLauncher
 NexusMods.Vortex
+aria2.aria2

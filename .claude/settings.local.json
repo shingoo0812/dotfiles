@@ -34,7 +34,20 @@
       "PowerShell(scoop list *)",
       "Bash(Get-ChildItem *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "PowerShell(git fetch *)",
+      "PowerShell(Set-Location *)",
+      "PowerShell(git -C \"$env:LOCALAPPDATA\\\\nvim-data\\\\site\\\\pack\\\\core\\\\opt\\\\mcphub.nvim\" fetch origin 2>&1; git -C \"$env:LOCALAPPDATA\\\\nvim-data\\\\site\\\\pack\\\\core\\\\opt\\\\mcphub.nvim\" log --oneline HEAD..origin/main 2>&1 | Select-Object -First 10)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(takeown *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(pwsh -ExecutionPolicy RemoteSigned -Command \"Import-Module BurntToast; New-BurntToastNotification -Text 'Claude Code', 'テスト通知' -Sound Default\")",
+      "PowerShell(npm search *)",
+      "Bash(mkdir -p mcp)",
+      "Bash(git mv *)",
+      "Bash(rm -rf mcp/blender/__pycache__ mcp/blender/blender-mcp)",
+      "Bash(rm -f blender-mcp/bridge.log)",
+      "Bash(rmdir blender-mcp *)"
     ]
   }
 }

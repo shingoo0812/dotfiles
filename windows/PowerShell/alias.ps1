@@ -256,6 +256,7 @@ function dlv {
 
 function imgcat { & wezterm imgcat $args }
 
+
 function ollama-agent {
     param([string]$Model = "qwen2.5")
     Push-Location 'C:\Users\shingo\AppData\Local\dotfiles\ollama-mcp'

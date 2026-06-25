@@ -140,7 +140,25 @@ One package per line. No version pins unless a specific version is required.
 
 ---
 
-## 5. Ollama Integration
+## 5. RAG Usage
+
+A RAG MCP server (`mcp__rag__rag_query`) indexes project documentation across all watch directories.
+
+### When to Query RAG
+
+**Always query RAG first** when the user asks about:
+- Project components, file locations, scripts, or workflows
+- System configuration or setup (Audio2Face, ComfyUI, Houdini, Blender, etc.)
+- "How does X work?" or "Where is Y?" questions about any indexed project
+
+### Rules
+- Query RAG **before answering** — even if the answer seems to be in context. Context can be stale; RAG reflects current docs.
+- RAG covers **documentation files only** (`.md`, `.txt`, `.rst`, etc.) — for code details, read the file directly.
+- If RAG returns no relevant results, fall back to context or direct file reads.
+
+---
+
+## 6. Ollama Integration
 
 Claude is the **supervisor**; Ollama is the **executor**.
 Claude plans, judges, and synthesizes. Ollama handles mechanical, high-volume, or privacy-sensitive subtasks.

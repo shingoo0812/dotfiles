@@ -1,21 +1,11 @@
 {
   "mcpServers": {
     "neovim": {
-      "command": "node",
-      "args": [
-        "C:/Users/shing/AppData/Roaming/npm/node_modules/mcp-neovim-server/build/index.js"
-      ],
+      "command": "npx",
+      "args": ["-y", "mcp-neovim-server"],
       "env": {
         "NVIM_SOCKET_PATH": "\\\\.\\pipe\\nvim"
       }
-    },
-    "houdini": {
-      "command": "uv",
-      "args": [
-        "run",
-        "python",
-        "C:/Users/shing/OneDrive/Documents/houdini21.0/scripts/python/houdinimcp/houdini_mcp_server.py"
-      ]
     },
     "godot": {
       "command": "npx",
@@ -34,44 +24,16 @@
         "https://gitmcp.io/shingoo0812/GLSLTestEnv"
       ]
     },
-    "browser-control-mcp": {
-      "command": "node",
-      "args": [
-        "C:/Users/shing/OneDrive/Documents/MCP/browser-control-mcp/mcp-server/dist/server.js"
-      ],
-      "env": {
-        "EXTENSION_SECRET": "89caff10-2a23-4257-beec-b58d59a8057d",
-        "EXTENSION_PORT": "8089"
-      }
-    },
     "blender": {
-      "command": "uvx",
+      "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
-        "blender-mcp"
-      ]
-    },
-    "maya": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "C:/Users/shing/OneDrive/Documents/MCP/MayaMCP",
-        "run",
-        "maya_mcp_server.py"
+        "-u",
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/blender/blender_mcp_bridge.py"
       ]
     },
     "powershell": {
-      "command": "C:\\Program Files\\nodejs\\node.exe",
-      "args": [
-        "C:/Users/shing/OneDrive/Documents/MCP/powershell-mcp/src/server.js"
-      ],
-      "env": {
-        "PSModulePath": "C:\\Users\\shing\\OneDrive\\Documents\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\7\\Modules",
-        "APPDATA": "C:\\Users\\shing\\AppData\\Roaming",
-        "USERPROFILE": "C:\\Users\\shing",
-        "PATH": "C:\\Program Files\\PowerShell\\7;C:\\Program Files\\nodejs;C:\\Windows\\System32;C:\\Windows",
-        "POWERSHELL_TELEMETRY_OPTOUT": "1"
-      },
-      "timeout": 180000
+      "command": "npx",
+      "args": ["-y", "mcp-powershell-exec"]
     },
     "wsl-filesystem": {
       "command": "wsl.exe",
@@ -86,21 +48,12 @@
     "wsl-sequential-thinking": {
       "command": "wsl.exe",
       "args": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
+        "-u",
+        "shingo",
+        "bash",
+        "-c",
+        "npx -y @modelcontextprotocol/server-sequential-thinking"
       ]
-    },
-    "comfyui-mcp-server": {
-      "args": [
-        "mcp-remote",
-        "http://127.0.0.1:9000/mcp"
-      ],
-      "optional": true,
-      "command": "npx",
-      "env": {
-        "COMFY_MCP_WORKFLOW_DIR": "D:\\ComfyUI\\ComfyUI-Easy-Install\\ComfyUI\\user\\default\\workflows"
-      }
     },
     "superpowers": {
       "command": "npx",
@@ -112,22 +65,50 @@
     "ollama": {
       "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
-        "C:/Users/shingo/AppData/Local/dotfiles/ollama-mcp/ollama_server.py"
+        "-u",
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/ollama/ollama_server.py"
       ]
     },
     "rag": {
       "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
+        "-u",
         "C:/Users/shingo/AppData/Local/dotfiles/rag/rag_server.py"
       ]
+    },
+    "comfyui": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": [
+        "-u",
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/comfyui/comfyui_mcp_server.py"
+      ]
     }
-
   },
+  "coworkUserFilesPath": "C:\\Users\\shingo\\Claude",
   "preferences": {
     "coworkScheduledTasksEnabled": true,
+    "coworkHipaaRestricted": false,
     "ccdScheduledTasksEnabled": true,
-    "sidebarMode": "chat",
+    "sidebarMode": "epitaxy",
+    "bypassPermissionsGateByAccount": {
+      "726513e0-da56-44a7-919c-c8c6ec3a9954": false
+    },
     "coworkWebSearchEnabled": true,
-    "floatingAtollActive": true
+    "coworkModelAutoFallbackByAccount": {
+      "726513e0-da56-44a7-919c-c8c6ec3a9954": true
+    },
+    "remoteToolsDeviceName": "coreultra7-b860",
+    "floatingAtollActive": true,
+    "epitaxyPrefs": {
+      "starred-local-code-sessions": [],
+      "starred-cowork-spaces": [],
+      "starred-session-groups": [],
+      "dframe-local-slice": {
+        "pinnedOrder": [],
+        "customGroupAssignments": {},
+        "customGroupOrder": {}
+      }
+    }
   }
 }
+
