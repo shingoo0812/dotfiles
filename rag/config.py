@@ -8,8 +8,9 @@ NERFSTUDIO_DIR = r"G:\nerfstudio"
 BRUSH_APP_DIR  = r"G:\brush-app-x86_64-pc-windows-msvc"
 ISAACLAB_DIR   = r"C:\IsaacLab"
 ACE_DIR        = r"D:\Ace"
-BLENDER_DIR    = r"D:\BlenderLauncher\stable\blender-5.1.2-stable.ec6e62d40fa9\5.1\scripts"
-COMFYUI_DIR = r"G:\ComfyUI\ComfyUI-Easy-Install\ComfyUI"
+BLENDER_DIR        = r"D:\BlenderLauncher\stable\blender-5.1.2-stable.ec6e62d40fa9\5.1\scripts"
+BLENDER_MANUAL_DIR = r"D:\BlenderLauncher\blender-manual\manual"
+COMFYUI_DIR        = r"G:\ComfyUI\ComfyUI-Easy-Install\ComfyUI"
 # OBSIDIAN_DIR = r"F:\Documents\ObsidianVault"
 # WORK_DIR     = r"F:\Work"
 
@@ -21,6 +22,7 @@ WATCH_DIRS = [
     ISAACLAB_DIR,
     ACE_DIR,
     BLENDER_DIR,
+    BLENDER_MANUAL_DIR,
     COMFYUI_DIR,
 ]
 
@@ -55,6 +57,8 @@ EXCLUDE_DIRS = {
     "build", "dist", "ckpts",
     # ComfyUI — large model storage, no source code
     "models",
+    # Blender manual — non-content directories
+    "images", "contribute",
 }
 
 # --- Specific filenames to skip ---

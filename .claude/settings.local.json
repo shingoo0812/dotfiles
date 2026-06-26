@@ -65,7 +65,8 @@
       "PowerShell(New-Item *)",
       "Bash(claude /help)",
       "Bash(Select-Object Name, PSIsContainer)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -u \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\rag\\\\watcher.py\" 2>&1)"
     ]
   }
 }
