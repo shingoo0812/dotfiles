@@ -149,10 +149,28 @@ If it reports missing setup, **ask the user before doing anything else**:
 |---|---|
 | `.git not found` | 「このフォルダはgit管理されていません。git initしますか？」 |
 | `Not in RAG WATCH_DIRS` | 「このフォルダはRAGの対象外です。rag/config.pyのWATCH_DIRSに追加しますか？」 |
+| `No CLAUDE.md found` | 「このプロジェクトにCLAUDE.mdがありません。テンプレートから作成しますか？」 |
 
-If both are missing, ask both in one message. Wait for the user's answer before proceeding with their original request.
+If multiple issues exist, ask all in one message. Wait for the user's answer before proceeding with their original request.
 
-A `Stop` hook checks for uncommitted git changes when Claude finishes. If changes exist, they appear as a `systemMessage` to the user — no further action needed from Claude.
+A `Stop` hook auto-commits changed repos and reminds about CLAUDE.md updates when hooks/settings changed.
+
+### Project File Templates
+
+Templates are stored at `~/.claude/templates/` (managed in dotfiles under `windows/Claude/templates/`).
+
+| Template | Deploy to | Purpose |
+|---|---|---|
+| `CLAUDE.md.tmpl` | `<project>/CLAUDE.md` | Claude rules for this project |
+| `overview.md.tmpl` | `<project>/.claude/overview.md` | Project context for Claude and user |
+| `notes.md.tmpl` | `<project>/.claude/notes.md` | Accumulated knowledge from sessions |
+
+**When creating project files from templates:**
+1. Copy template to destination, replacing `[Project Name]` with the actual name
+2. Remove sections marked `<!-- Remove this section if ... -->` that don't apply
+3. Fill in placeholders with project-specific information
+4. `CLAUDE.md` contains **Claude rules only** — constraints, Python paths, git structure, gotchas
+5. User-facing information (commands, directory map, key files) goes in `.claude/overview.md`
 
 ---
 

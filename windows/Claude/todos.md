@@ -5,10 +5,10 @@ Pending tasks with trigger conditions for contextual reminders.
 ---
 
 ## [TODO-001] Define project CLAUDE.md template
-**Status:** pending
+**Status:** done
 **Trigger:** project has no CLAUDE.md
-**Context:** Decided to standardize project CLAUDE.md structure. No template exists yet.
-**Action:** Create a template based on dotfiles/CLAUDE.md structure. Apply when Claude starts in a new project without CLAUDE.md.
+**Context:** Templates created at ~/.claude/templates/. Three files: CLAUDE.md.tmpl, overview.md.tmpl, notes.md.tmpl.
+**Action:** When SessionStart reports no CLAUDE.md, offer to create from ~/.claude/templates/CLAUDE.md.tmpl.
 
 ---
 
