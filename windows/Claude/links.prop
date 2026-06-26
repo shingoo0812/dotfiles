@@ -2,3 +2,4 @@ $DOTFILES\windows\Claude\Claude.md=$HOME\.claude\CLAUDE.md
 $DOTFILES\windows\Claude\settings.json=$HOME\.claude\settings.json
 $DOTFILES\windows\Claude\claude_desktop_config.json=$APPDATA\Claude\claude_desktop_config.json
 $DOTFILES\windows\Claude\hooks=$HOME\.claude\hooks
+$DOTFILES\windows\Claude\todos.md=$HOME\.claude\todos.md
