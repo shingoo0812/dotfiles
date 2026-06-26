@@ -33,6 +33,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "mcp__ollama__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NonInteractive -File \"C:\\Users\\shingo\\.claude\\hooks\\ollama-usage-log.ps1\"",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Notification": [
