@@ -63,7 +63,9 @@
       "PowerShell(echo '{}' | powershell -NoProfile -NonInteractive -File \"C:\\\\Users\\\\shingo\\\\.claude\\\\hooks\\\\stop-git-check.ps1\")",
       "PowerShell(\\(Get-Item \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\rag\\\\rebuild.log\"\\).LastWriteTime; \\(Get-Item \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\rag\\\\rebuild.log\"\\).Length)",
       "PowerShell(New-Item *)",
-      "Bash(claude /help)"
+      "Bash(claude /help)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }
