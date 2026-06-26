@@ -8,6 +8,8 @@ NERFSTUDIO_DIR = r"G:\nerfstudio"
 BRUSH_APP_DIR  = r"G:\brush-app-x86_64-pc-windows-msvc"
 ISAACLAB_DIR   = r"C:\IsaacLab"
 ACE_DIR        = r"D:\Ace"
+BLENDER_DIR    = r"D:\BlenderLauncher\stable\blender-5.1.2-stable.ec6e62d40fa9\5.1\scripts"
+COMFYUI_DIR = r"G:\ComfyUI\ComfyUI-Easy-Install\ComfyUI"
 # OBSIDIAN_DIR = r"F:\Documents\ObsidianVault"
 # WORK_DIR     = r"F:\Work"
 
@@ -18,6 +20,8 @@ WATCH_DIRS = [
     BRUSH_APP_DIR,
     ISAACLAB_DIR,
     ACE_DIR,
+    BLENDER_DIR,
+    COMFYUI_DIR,
 ]
 
 RAG_DIR          = str(Path(__file__).parent)
@@ -27,13 +31,14 @@ MTIME_CACHE_PATH = Path(__file__).parent / "mtime_cache.json"
 EMBED_MODEL    = "nomic-embed-text"
 GENERATE_MODEL = "claude-sonnet-4-6"
 
-# --- Documentation-only file types ---
+# --- Indexed file types ---
 SUPPORTED_EXTENSIONS = {
     ".md",    # Markdown — READMEs, notes, CLAUDE.md, wiki pages
     ".txt",   # Plain text
     ".rst",   # reStructuredText
     ".wiki",  # VimWiki markup
     ".ipynb", # Jupyter notebooks (used as study/learning notes)
+    ".py",    # Python source code (chunked by function/class via AST)
 }
 
 # --- Directory names to skip (applied across all watch dirs) ---
@@ -46,6 +51,10 @@ EXCLUDE_DIRS = {
     # Houdini — bundled Python libs and simulation/cache output
     "python3.7libs", "python3.9libs", "python3.10libs", "python3.11libs",
     "otls", "sim", "cache", "backup",
+    # Build artifacts and model checkpoints
+    "build", "dist", "ckpts",
+    # ComfyUI — large model storage, no source code
+    "models",
 }
 
 # --- Specific filenames to skip ---

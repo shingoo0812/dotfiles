@@ -140,21 +140,44 @@ One package per line. No version pins unless a specific version is required.
 
 ---
 
-## 5. RAG Usage
+## 5. New Project Setup
 
-A RAG MCP server (`mcp__rag__rag_query`) indexes project documentation across all watch directories.
+A `SessionStart` hook checks the working directory at the start of every session.
+If it reports missing setup, **ask the user before doing anything else**:
+
+| Hook message | Ask the user |
+|---|---|
+| `.git not found` | 「このフォルダはgit管理されていません。git initしますか？」 |
+| `Not in RAG WATCH_DIRS` | 「このフォルダはRAGの対象外です。rag/config.pyのWATCH_DIRSに追加しますか？」 |
+
+If both are missing, ask both in one message. Wait for the user's answer before proceeding with their original request.
+
+A `Stop` hook checks for uncommitted git changes when Claude finishes. If changes exist, they appear as a `systemMessage` to the user — no further action needed from Claude.
+
+---
+
+## 6. RAG Usage
+
+A RAG MCP server (`mcp__rag__rag_query`) indexes documentation and Python source code across watch directories.
+
+### What RAG covers
+- **Documentation**: `.md`, `.txt`, `.rst`, `.wiki`, `.ipynb`
+- **Source code**: `.py` files (chunked by function/class via AST)
+
+### What RAG does NOT cover
+- Config values in `.json`, `.toml`, `.cfg`, `.yaml` — read the file directly
+- File paths and directory structure — use `Glob` or direct filesystem search
+- Binary files, models, compiled output
 
 ### When to Query RAG
-
-**Always query RAG first** when the user asks about:
-- Project components, file locations, scripts, or workflows
-- System configuration or setup (Audio2Face, ComfyUI, Houdini, Blender, etc.)
-- "How does X work?" or "Where is Y?" questions about any indexed project
+- "How does function/class X work?" → query RAG, then read the file to confirm
+- Before editing Python code: query RAG for related functions/classes that might be affected, then **read those files directly** before making changes
+- "What does project X do?" → query RAG for an overview
 
 ### Rules
-- Query RAG **before answering** — even if the answer seems to be in context. Context can be stale; RAG reflects current docs.
-- RAG covers **documentation files only** (`.md`, `.txt`, `.rst`, etc.) — for code details, read the file directly.
-- If RAG returns no relevant results, fall back to context or direct file reads.
+- If RAG returns no relevant results, fall back to `Glob`/`Read` — do not treat absence of RAG results as absence of information
+- RAG results are a starting point; always verify with direct file reads before making code changes
+- Do not query RAG for file paths or config values — use dedicated tools instead
 
 ---
 

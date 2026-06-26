@@ -47,7 +47,21 @@
       "Bash(git mv *)",
       "Bash(rm -rf mcp/blender/__pycache__ mcp/blender/blender-mcp)",
       "Bash(rm -f blender-mcp/bridge.log)",
-      "Bash(rmdir blender-mcp *)"
+      "Bash(rmdir blender-mcp *)",
+      "PowerShell(head *)",
+      "PowerShell(Test-Path *)",
+      "Bash(G:/ComfyUI/ComfyUI-Easy-Install/python_embeded/python.exe *)",
+      "PowerShell(Stop-ScheduledTask *)",
+      "Bash(find G:/ComfyUI/ComfyUI-Easy-Install/ComfyUI -name *.py -not -path */models/* -not -path */__pycache__/* -not -path */build/* -not -path */dist/* -not -path */ckpts/*)",
+      "PowerShell(git *)",
+      "Bash(git ls-remote *)",
+      "Bash(git clone *)",
+      "Read(//tmp/**)",
+      "Bash(git -C /tmp/comfyuiconf_check log --oneline)",
+      "Skill(update-config)",
+      "PowerShell(echo '{}' | powershell -NoProfile -NonInteractive -File \"C:\\\\Users\\\\shingo\\\\.claude\\\\hooks\\\\session-start-check.ps1\")",
+      "PowerShell(echo '{}' | powershell -NoProfile -NonInteractive -File \"C:\\\\Users\\\\shingo\\\\.claude\\\\hooks\\\\stop-git-check.ps1\")",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\rag\\\\rebuild.log\"\\).LastWriteTime; \\(Get-Item \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\rag\\\\rebuild.log\"\\).Length)"
     ]
   }
 }

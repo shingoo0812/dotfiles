@@ -1,3 +1,4 @@
+import ast
 import os
 import json
 import time
@@ -69,6 +70,54 @@ class Indexer:
     # ------------------------------------------------------------------ #
     # Chunking                                                             #
     # ------------------------------------------------------------------ #
+
+    def _chunk_python(self, text: str) -> list[str]:
+        """Chunk Python source by top-level and class-level definitions via AST."""
+        try:
+            tree = ast.parse(text)
+        except SyntaxError:
+            return self._chunk(text)
+
+        lines = text.splitlines()
+        chunks: list[str] = []
+        preamble: list[str] = []
+
+        def extract_node(node: ast.AST, class_prefix: str = "") -> None:
+            start = node.lineno - 1
+            end = node.end_lineno  # type: ignore[attr-defined]
+            body = "\n".join(lines[start:end])
+
+            if isinstance(node, ast.ClassDef) and len(body) > CHUNK_SIZE * 2:
+                # Large class: emit header then each method separately
+                first_child = node.body[0] if node.body else None
+                header_end = first_child.lineno - 1 if first_child else end
+                header = "\n".join(lines[start:header_end]).strip()
+                if header:
+                    chunks.append(header)
+                for child in node.body:
+                    if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                        extract_node(child, class_prefix=f"# class {node.name}\n")
+            else:
+                chunks.append(class_prefix + body)
+
+        for node in tree.body:
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                if preamble:
+                    joined = "\n".join(preamble).strip()
+                    if joined:
+                        chunks.append(joined)
+                    preamble.clear()
+                extract_node(node)
+            else:
+                end = getattr(node, "end_lineno", node.lineno)
+                preamble.extend(lines[node.lineno - 1 : end])
+
+        if preamble:
+            joined = "\n".join(preamble).strip()
+            if joined:
+                chunks.append(joined)
+
+        return [c for c in chunks if c.strip()] or self._chunk(text)
 
     def _chunk(self, text: str) -> list[str]:
         lines = text.splitlines()
@@ -181,7 +230,10 @@ class Indexer:
 
         self.remove_file(abs_path)
 
-        chunks = self._chunk(text)
+        if Path(abs_path).suffix.lower() == ".py":
+            chunks = self._chunk_python(text)
+        else:
+            chunks = self._chunk(text)
         rel_path = self._rel_path(abs_path)
 
         ids, embeddings, documents, metadatas = [], [], [], []

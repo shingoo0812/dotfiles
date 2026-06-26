@@ -22,7 +22,7 @@ _log("=== bridge started ===")
 
 BLENDER_HOST = "localhost"
 BLENDER_PORT = 9876
-BLENDER_TIMEOUT = 30.0
+BLENDER_TIMEOUT = 120.0
 
 TOOLS = [
     {

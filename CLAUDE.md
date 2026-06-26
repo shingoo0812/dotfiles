@@ -123,6 +123,32 @@ python agent.py --model qwen2.5
 
 `filesystem_server.py` is launched automatically as a subprocess by `agent.py` — do not run it directly. `ollama_server.py` is registered in Claude Desktop and Claude Code as an MCP server.
 
+## MCP Servers
+
+All MCP servers live under `mcp/`:
+
+| Directory | Purpose |
+|---|---|
+| `mcp/ollama/` | Local Ollama models as MCP tools (`ollama_server.py`) |
+| `mcp/comfyui/` | ComfyUI image generation via MCP (`comfyui_mcp_server.py`) |
+| `mcp/blender/` | Blender Python execution bridge (`blender_mcp_bridge.py`) |
+
+### Blender MCP Bridge (`mcp/blender/blender_mcp_bridge.py`)
+
+Stdio MCP bridge that connects to Blender's socket on **localhost:9876** (null-byte delimited JSON over TCP).
+
+**Prerequisites:**
+1. Blender must have the official Blender Foundation MCP extension installed and running (opens port 9876)
+2. Timeout: 120 seconds (`BLENDER_TIMEOUT`)
+
+**Exposed tools:**
+- `execute_python` — runs `bpy` code in the live Blender instance; code must assign a dict to `result`
+- `get_scene_info` — returns current scene objects, camera, lights, etc.
+
+**Log file:** `mcp/blender/bridge.log`
+
+**Registration:** Add to `claude_desktop_config.json` (or `settings.json` mcpServers) with the Python path and script path.
+
 ## Claude Code Configuration
 
 `windows/Claude/settings.json` configures:
