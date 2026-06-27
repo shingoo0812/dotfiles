@@ -10,6 +10,7 @@ ISAACLAB_DIR   = r"C:\IsaacLab"
 ACE_DIR        = r"D:\Ace"
 BLENDER_DIR        = r"D:\BlenderLauncher\stable\blender-5.1.2-stable.ec6e62d40fa9\5.1\scripts"
 BLENDER_MANUAL_DIR = r"D:\BlenderLauncher\blender-manual\manual"
+BLENDER_ADDONS_DIR = r"D:\BlenderLauncher\Project\scripts\addons"
 COMFYUI_DIR        = r"G:\ComfyUI\ComfyUI-Easy-Install\ComfyUI"
 # OBSIDIAN_DIR = r"F:\Documents\ObsidianVault"
 # WORK_DIR     = r"F:\Work"
@@ -23,6 +24,7 @@ WATCH_DIRS = [
     ACE_DIR,
     BLENDER_DIR,
     BLENDER_MANUAL_DIR,
+    BLENDER_ADDONS_DIR,
     COMFYUI_DIR,
 ]
 
