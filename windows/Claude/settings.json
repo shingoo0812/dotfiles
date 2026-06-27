@@ -142,6 +142,13 @@
       "args": [
         "C:/Users/shingo/AppData/Local/dotfiles/ollama-mcp/ollama_server.py"
       ]
+    },
+    "comfyui": {
+      "command": "C:/Users/shingo/miniconda3/python.exe",
+      "args": [
+        "-u",
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/comfyui/comfyui_mcp_server.py"
+      ]
     }
   }
 }
