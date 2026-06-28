@@ -117,7 +117,17 @@
       "mcp__comfyui__comfyui_get_log",
       "mcp__comfyui__comfyui_get_errors",
       "mcp__comfyui__comfyui_interrupt",
-      "mcp__comfyui__comfyui_free_memory"
+      "mcp__comfyui__comfyui_free_memory",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(Select-String *)",
+      "PowerShell(Get-Item *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Get-Member *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Measure-Object *)",
+      "PowerShell(Invoke-WebRequest \"http://localhost:8188*)"
     ]
   },
   "mcpServers": {
