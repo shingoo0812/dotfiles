@@ -127,7 +127,13 @@
       "PowerShell(Get-Member *)",
       "PowerShell(Get-Command *)",
       "PowerShell(Measure-Object *)",
-      "PowerShell(Invoke-WebRequest \"http://localhost:8188*)"
+      "PowerShell(Invoke-WebRequest \"http://localhost:8188*)",
+      "PowerShell($* = Get-Content *)",
+      "PowerShell($* = Invoke-WebRequest *)",
+      "PowerShell($* = Get-ChildItem *)",
+      "PowerShell($* = Get-Item *)",
+      "mcp__blender__get_scene_info",
+      "mcp__audio2face__a2f_get_instances"
     ]
   },
   "mcpServers": {
