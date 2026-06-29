@@ -128,10 +128,6 @@
       "PowerShell(Get-Command *)",
       "PowerShell(Measure-Object *)",
       "PowerShell(Invoke-WebRequest \"http://localhost:8188*)",
-      "PowerShell($* = Get-Content *)",
-      "PowerShell($* = Invoke-WebRequest *)",
-      "PowerShell($* = Get-ChildItem *)",
-      "PowerShell($* = Get-Item *)",
       "PowerShell(Select-Object *)",
       "PowerShell(Where-Object *)",
       "PowerShell(ConvertFrom-Json*)",
@@ -139,7 +135,6 @@
       "PowerShell(Format-Table *)",
       "PowerShell(Format-List *)",
       "PowerShell(Out-String*)",
-      "PowerShell($*)",
       "mcp__blender__get_scene_info",
       "mcp__audio2face__a2f_get_instances"
     ]
