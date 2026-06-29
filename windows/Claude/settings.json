@@ -147,7 +147,7 @@
       "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
         "-u",
-        "C:/Users/shingo/AppData/Local/dotfiles/blender-mcp/blender_mcp_bridge.py"
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/blender/blender_mcp_bridge.py"
       ]
     },
     "neovim": {
@@ -162,7 +162,7 @@
     "ollama": {
       "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
-        "C:/Users/shingo/AppData/Local/dotfiles/ollama-mcp/ollama_server.py"
+        "C:/Users/shingo/AppData/Local/dotfiles/mcp/ollama/ollama_server.py"
       ]
     },
     "comfyui": {
