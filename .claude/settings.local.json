@@ -70,7 +70,11 @@
       "PowerShell(Get-Item \"C:\\\\Users\\\\shingo\\\\.claude\\\\settings.json\" -ErrorAction SilentlyContinue | Select-Object FullName, LinkType, @{N='Target';E={$_.Target}}, Length)",
       "PowerShell(try { $r = Invoke-WebRequest \"http://localhost:11434/api/tags\" -TimeoutSec 5; \"Ollama running: OK\" } catch { \"Ollama NOT running: $_\" })",
       "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import ollama; import mcp; print\\('OK'\\)\" 2>&1)",
-      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -u \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\mcp\\\\ollama\\\\ollama_server.py\" 2>&1 | Select-Object -First 20)"
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -u \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\\\\mcp\\\\ollama\\\\ollama_server.py\" 2>&1 | Select-Object -First 20)",
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -c \"import mcp; print\\(mcp.__version__\\)\")",
+      "PowerShell(C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe -m pip show mcp 2>&1)",
+      "Bash(claude mcp *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers', {}\\), indent=2\\)\\)\")"
     ]
   }
 }
