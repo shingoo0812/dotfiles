@@ -138,8 +138,6 @@
       "PowerShell(Format-Table *)",
       "PowerShell(Format-List *)",
       "PowerShell(Out-String*)",
-      "Write(**)",
-      "Edit(**)",
       "mcp__blender__get_scene_info",
       "mcp__audio2face__a2f_get_instances"
     ]
