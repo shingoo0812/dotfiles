@@ -162,6 +162,7 @@
     "ollama": {
       "command": "C:/Users/shingo/miniconda3/python.exe",
       "args": [
+        "-u",
         "C:/Users/shingo/AppData/Local/dotfiles/mcp/ollama/ollama_server.py"
       ]
     },
