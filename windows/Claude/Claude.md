@@ -11,6 +11,17 @@
 **`.claude/overview.md` and `.claude/notes.md` may be written in Japanese.**
 - These are human-readable documents; use whatever language is most natural for the user
 
+### Before Acting
+
+**Surface assumptions. Don't proceed silently when confused.**
+- State assumptions explicitly before implementing. If uncertain, ask.
+- If multiple interpretations exist, present them — don't pick one silently.
+- If something is unclear, stop and name what's confusing before continuing.
+
+**Never assume APIs, versions, flags, or package names — verify first.**
+- Check actual code or documentation before using any API, CLI flag, version number, or package name.
+- A wrong assumption that compiles is worse than a question that takes 10 seconds.
+
 ---
 
 ## 2. File & Tool Operations
