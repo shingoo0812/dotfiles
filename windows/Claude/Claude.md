@@ -3,10 +3,13 @@
 ## 1. Meta Rules
 
 ### Documentation Language
-**All Claude.md files must be written in English.**
-- Claude.md is for Claude to read and follow
-- English ensures optimal token efficiency and clarity
-- When creating or updating any Claude.md file, always use English
+
+**`CLAUDE.md` must always be written in English.**
+- CLAUDE.md is for Claude to read and follow — English ensures token efficiency and clarity
+- When creating or updating CLAUDE.md, always use English
+
+**`.claude/overview.md` and `.claude/notes.md` may be written in Japanese.**
+- These are human-readable documents; use whatever language is most natural for the user
 
 ---
 
@@ -164,6 +167,21 @@ Templates are stored at `~/.claude/templates/` (managed in dotfiles under `windo
 | `CLAUDE.md.tmpl` | `<project>/CLAUDE.md` | Claude rules for this project |
 | `overview.md.tmpl` | `<project>/.claude/overview.md` | Project context for Claude and user |
 | `notes.md.tmpl` | `<project>/.claude/notes.md` | Accumulated knowledge from sessions |
+
+### Document Rules
+
+| File | Language | Claude reads automatically? | Purpose |
+|---|---|---|---|
+| `CLAUDE.md` | English only | Yes — every session | Claude behavior rules for this project |
+| `.claude/overview.md` | Japanese OK | Only when user asks | Human-readable project context |
+| `.claude/notes.md` | Japanese OK | Only when user asks | Human-readable work log |
+
+**notes.md** is a work log for the user, not a Claude behavior file:
+- Write investigation logs, build recipes, bug fix histories, configuration decisions
+- Do NOT write Claude behavior rules here — those go in `CLAUDE.md` or memory
+- Do NOT read or reference `notes.md` unless the user explicitly asks ("notes.mdを見て" etc.)
+- When memory entries are completed/resolved, migrate their detail to `notes.md` then delete from memory
+- Create only when the user explicitly requests it
 
 **When creating project files from templates:**
 1. Copy template to destination, replacing `[Project Name]` with the actual name
