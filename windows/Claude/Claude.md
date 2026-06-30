@@ -183,6 +183,22 @@ Templates are stored at `~/.claude/templates/` (managed in dotfiles under `windo
 - When memory entries are completed/resolved, migrate their detail to `notes.md` then delete from memory
 - Create only when the user explicitly requests it
 
+### Document Change Rules
+
+**Protected documents** — `CLAUDE.md`, `.claude/overview.md`, `.claude/notes.md` in any project.
+
+**A. Before creating** any protected document, confirm first — even if creation was implied:
+> 「`[filename]` を作成してもよいですか？」
+
+**B. Before editing** any protected document, confirm first — unless the user's message directly names the file (e.g. "notes.mdに追記して", "CLAUDE.mdを更新して"):
+> 「`[filename]` を編集します。よろしいですか？」
+
+**C. Never create or edit** any other `.md` file unless the user explicitly requests it.
+
+**D. When committing** changes that include protected documents, the commit message must state WHY, not just what:
+> Bad: `Update notes.md`
+> Good: `Update notes.md: add texture projection build steps (user request)`
+
 **When creating project files from templates:**
 1. Copy template to destination, replacing `[Project Name]` with the actual name
 2. Remove sections marked `<!-- Remove this section if ... -->` that don't apply
