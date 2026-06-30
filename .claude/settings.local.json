@@ -78,7 +78,8 @@
       "Bash(python3 *)",
       "Bash(/c/Users/shingo/miniconda3/python.exe *)",
       "PowerShell($env:TEMP)",
-      "PowerShell(& \"C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe\" -u \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\Temp\\\\scan_transcripts.py\")"
+      "PowerShell(& \"C:\\\\Users\\\\shingo\\\\miniconda3\\\\python.exe\" -u \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\Temp\\\\scan_transcripts.py\")",
+      "Bash(awk '{print $2}')"
     ]
   }
 }
