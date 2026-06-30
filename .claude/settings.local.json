@@ -83,7 +83,8 @@
       "Bash(gh api *)",
       "PowerShell(gh api *)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git push *)"
     ]
   }
 }
