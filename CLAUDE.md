@@ -158,6 +158,7 @@ Stdio MCP bridge that connects to Blender's socket on **localhost:9876** (null-b
   - Package list auto-update after `Bash`/`PowerShell` installs (script: `~/.claude/hooks/update-package-lists.ps1`)
 - **Status line**: `npx -y ccstatusline@latest` refreshed every 10 seconds
 - **MCP**: neovim server (requires nvim running with `--listen \\.\pipe\nvim`)
+- **Permissions** (`permissions.allow`): allowlist for prompt-free tool calls. Note: PowerShell aliases (`cd`, `dir`) require their own entries — `PowerShell(Set-Location *)` does NOT match commands starting with `cd`, and `PowerShell(Get-ChildItem *)` does NOT match `dir`.
 
 The global `CLAUDE.md` at `windows/Claude/Claude.md` contains system-wide rules (file operation priority, MCP timeout handling, Ollama tool usage policy). Edit it there — the symlink propagates automatically.
 
