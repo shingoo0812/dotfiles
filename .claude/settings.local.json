@@ -84,7 +84,10 @@
       "PowerShell(gh api *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git -C \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\shingo\\\\AppData\\\\Local\\\\dotfiles\" diff)",
+      "Bash(git *)"
     ]
   }
 }
