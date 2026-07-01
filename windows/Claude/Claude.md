@@ -60,6 +60,13 @@ EOF
 - Do NOT automatically try alternative tools
 - Let user decide next step
 
+### Screenshot Review
+When the user asks Claude to check/look at a screenshot (e.g. "スクショ確認して", "この画面を見て"), find the latest file in `C:\Users\shingo\Pictures\Screenshots\`:
+```powershell
+Get-ChildItem "C:\Users\shingo\Pictures\Screenshots" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName
+```
+Then read that file with the `Read` tool.
+
 ---
 
 ## 3. MCP & PowerShell Rules
