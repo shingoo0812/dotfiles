@@ -149,7 +149,10 @@
       "PowerShell(Move-Item *)",
       "PowerShell(New-Item *)",
       "mcp__blender__get_scene_info",
-      "mcp__audio2face__a2f_get_instances"
+      "mcp__audio2face__a2f_get_instances",
+      "Bash(cd * && git *)",
+      "Bash(git *)",
+      "Bash(cat *)"
     ]
   },
   "mcpServers": {
